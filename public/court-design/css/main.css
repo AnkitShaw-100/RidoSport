@@ -1,0 +1,757 @@
+@charset "utf-8";
+/* CSS Document */
+body{font-family: 'Roboto', sans-serif; font-size:14px; color:#646464;}
+a{color:#e4e4e4; transition:all ease-in-out 0.5s; text-decoration:none;}
+a:hover{color:#f4a536;transition:all ease-in-out 0.5s;text-decoration:none;}
+h1, h2, h3, h5{ padding:0px; margin:0px; text-transform:uppercase; font-weight:700;}
+h4{font-weight:700;}
+ul{padding:0px;}
+
+.tbl{ display:table; width:100%; position:relative; }
+.tbl-cell{ display:table-cell;}.tbl-layout{ table-layout:fixed}
+.VAT{vertical-align:top}.VAB{ vertical-align:bottom}.VAM{ vertical-align:middle}
+.TAC{ text-align:center}.TAL{text-align:left }.TAR{ text-align:right}
+
+header{ background:rgba(0, 0,0, 0.9);padding:0 50px; border-bottom:2px solid#f4a536;position: fixed;width: 100%;z-index: 9999;}
+.navMarg{margin-top:10px;}
+.navbar-brand{ height:auto; padding: 5px 0px 5px;}
+/* NavBar  */
+.navbar {
+    min-height: auto;
+    margin-bottom: 0px;
+    border:none;
+	border-radius:0px;
+}.nav > li > a.btn-danger{ background:#f4a536; border:none;}
+.navbar-collapse {
+    padding-right: 0px;
+padding-left: 0px;}
+.nav > li > a{
+    position: relative;
+    display: block;
+	padding-top:13px;
+	padding-bottom:12px;
+	font-weight:400;
+	font-size:14px;
+}
+.nav > li > a:hover{background:#f4a536 !important;color:#fff;}
+.dropdown-menu {
+    background:rgba(0, 0, 0, 0.6);
+	font-size: 15px;
+	z-index:9999;
+}
+.dropdown-menu li a {color:#fff;}
+.dropdown-menu li a:hover{ color:#fff}
+
+.dropdown-submenu > a::after {
+ border-color: transparent transparent transparent #f6f6f6;
+ border-style: solid;
+ border-width: 5px 0 5px 5px;
+ content: " ";
+ display: block;
+ float: right;
+ height: 0;
+ margin-right: -10px;
+ margin-top: 5px;
+ width: 0;
+}
+.dropdown-submenu:hover > .dropdown-menu {
+	display: block;
+}
+.dropdown-submenu{ position:relative;}
+.dropdown-submenu > .dropdown-menu {
+	border-radius: 0 6px 6px;
+	left: 100%;
+	margin-left: -1px;
+	margin-top: 8px;
+	width:auto;}
+
+
+.nav>li>a:focus, .nav>li>a:hover {
+	text-decoration: none;
+	background: none;}
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {background:#f4a536;color:#fff; border-color:#162f05;} 
+
+/* Carousel */
+.carousel-control.left, .carousel-control.right{ background:none;}
+.carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next, .carousel-control .icon-prev {
+    margin: 0px 20px;
+    background: #000;
+    border-radius: 50%;
+    font-size: 12px;
+    line-height: 27px;
+	opacity: 0.4;
+}
+/* .carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next, .carousel-control .icon-prev {border:3px solid rgba(255, 196, 0, 0.8); font-size:15px; width:40px;height:40px; border-radius:50%; background:none; line-height:33px; color:rgba(255, 196, 0, 0.8); text-shadow:none;} */
+.carousel-caption {
+    position: absolute;
+    right: 49%;
+    bottom: 8%;
+    left: 0%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    text-align: left;
+    text-shadow:none;
+	 background:rgba(0, 0, 0, 0.3);
+	  padding-left:70px;}
+.carousel-control {width: 1.6%;opacity: 1;}
+.carousel-caption h3{ font-size:24px; padding:0px 0px 15px 0px; }
+.carousel-caption p{ font-size:20px; font-weight:700; padding:10px 30px 10px 0px; }
+.carousel-caption p span{ color:#f4a536;}
+.carousel-inner > .item > a > img, .carousel-inner > .item > img{width:100%;}
+
+.carousel-caption .btn{ padding:12px 45px; border-radius:50px; margin-top:15px; font-weight:700;}
+.carousel-caption .btn-danger{ background:#f4a536; border:none;}
+.carousel-caption .btn-danger:hover{ background:#fff; border:none; color:#f4a536}.courtBtn{display:none}.courtBtn .btn{border-radius:0px;}.courtBtn .btn-danger{ background:#f4a536; border:none;}.courtBtn .btn-danger:hover{ background:#181818; border:none; color:#f4a536}.contBtn{display:none}.contBtn .btn{border-radius:0px;}.contBtn .btn-danger{ background:#181818; border:none;}.contBtn .btn-danger:hover{ background:#f4a536;border:none; color:#fff}
+
+/* Product Div */
+.prodactDiv{background:url(../img/prd-bg.jpg)no-repeat top center; padding:50px 0; text-align:center; margin-bottom:50px;}
+.prodactDiv h1{color:#030303; font-size:27px; letter-spacing:1px;}
+.prodactDiv h1 span{color:#f4a536}
+
+.headding {position:relative}
+.headding h1:before{border:2px solid#f4a536; position:absolute; top:45px; left:44.5%; content:""; width:125px;}
+.headding img{padding-top:18px; margin-bottom:30px}
+
+
+/* Main Prd */
+.prdMain{padding:90px 0;}
+.mt_10 {
+    margin-top: 20px;
+}
+.sub-hover {
+    overflow: hidden;
+    position: relative;
+}
+.sub-img {position: relative;}
+.sub-hover:hover img {
+    transform: scale(1.1);
+    transition: all 0.6s ease-in-out 0s;
+}
+.sub-hover:hover .bannertext {
+    top: 50%;
+    transition: all 0.5s ease 0s;
+}
+
+.bannertext {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    transition: all 0.5s ease 0s;
+	background:rgba(0, 0, 0, 0.7)
+}
+.bannertext > p {
+    font-size: 14px;
+    color: #fefefe;
+	padding:0 25px 10px ;
+}
+.mb_10 {
+    margin-bottom: 10px;}
+.bannertext > h2 {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0;
+    text-transform: uppercase;
+    color: #f4a536;
+    line-height: 1;
+    transition: all 0.5s ease 0s;
+}
+.sub-hover:hover .cms_btn {
+    opacity: 1;
+    transition: all 0.5s ease 0s;
+}
+.sub-hover:hover .bannertext p, .sub-hover:hover .bannertext h2{
+    opacity: 0;
+    transition: all 0.5s ease 0s;
+	background:none;
+}
+.sub-hover:hover .bannertext{
+	background:none;
+}
+.bannertext .cms_btn {
+    opacity: 0;
+}
+.bannertext .btn:hover, .btn:focus, .btn.focus {
+    background: #474445 none repeat scroll 0 0;
+    color: #fff;
+    text-decoration: none;
+}
+.bannertext .btn {
+    background: #f4a536 none repeat scroll 0 0;
+    border-radius: 0;
+    color: #fff;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: 500;
+}	
+
+.thColor{background:url(../img/parallax.jpg) no-repeat scroll center center / cover; padding:200px 0; margin:10px 0 30px;}
+.thColor h3 {
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    margin-bottom: 0;
+    line-height: 1.2em;
+    color: #333;
+}
+.thColor h2 {
+    font-size: 80px;
+line-height: 84px;
+    font-weight: 900;
+    color: #ffc107;
+    letter-spacing: 3.5px;
+    margin-bottom: 50px;
+	font-family: 'Roboto Slab', serif;
+}
+.thColor .btn-default {
+    background: transparent;
+    color: #333;
+    border-color: #333;
+    line-height: 1.6;
+}
+.thColor .btn-default:hover{
+    background: #ffc107;
+    color: #333;
+    border-color: #d8a303;
+}
+.thColor .btn {
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 100;
+	padding:8px 30px;
+	border-radius:0px;
+
+}
+.pImg {text-align:center}
+.pImg img {
+    border: 1px solid #f3f3f3;
+    margin-bottom: 10px;
+    text-align: center;
+    padding-bottom: 20px;
+    padding: 10px;
+}
+.pImg a{color:#f4a536;}
+.pImg a:hover{color:#1f1f1f;}
+/* Main Prd End*/
+
+.prdMain{border-left:2px solid#fff; border-right:2px solid#fff; margin-left:0px; margin-bottom:25px; margin-top:50px; padding-top:0px; padding-left:5px; padding-right:5px;}
+.prdText{border-radius:4px; border:3px solid rgba(255, 255, 255, 0.1); padding:10px ; position:relative}
+.prdText h3{font-size:20px; color:#fff; font-weight:700; background:#f4a536; padding:15px 0}
+.prdText h3 a{ color:#fff;}
+.prdText h3 a:hover{ color:#2a2a2a;}
+
+/* Product Div End*/
+
+/* About Div */
+.aboutDiv {padding:50px 0;}
+.aboutDiv h1{color:#030303; font-size:27px; letter-spacing:1px;}
+.aboutDiv h1 span{color:#f4a536}
+.aboutDiv p{padding:0px 65px 5px; font-size:20px;font-family: 'Oswald', sans-serif; font-weight:100; line-height:32px;}
+.aboutDiv p span{color:#f4a536}
+.itHelp{border:1px dashed #171717; padding:25px 0;color:#171717}
+.itHelp h3{ font-size:18px;}
+.itHelp h3 img{ padding-right:30px}
+.btn-group{margin-top:50px;}
+.btn{ border-radius:8px; padding:8px 30px;}
+.btn-warning{background:#f4a536; border:none;}
+.btn-warning:hover{background:#2a2a2a; border:none;}
+.btn-default{background:#2a2a2a; border:none; color:#fff;}
+.btn-default:hover{background:#f4a536;}
+
+/* About Div End*/
+/*======================
+======Portfolio CSS=====
+========================*/
+
+.gallDiv h1{color:#030303; font-size:27px; letter-spacing:1px;}
+.gallDiv h1 span{color:#f4a536}
+
+#portfolio {
+  padding-bottom: 60px
+}
+
+#portfolio 
+.portfolio-filter {margin-bottom:30px;}
+
+#portfolio .portfolio-filter li {display: inline-block;}
+
+#portfolio .portfolio-filter li a:hover, 
+#portfolio .portfolio-filter li a:focus,
+#portfolio .portfolio-filter li a:active , 
+#portfolio .portfolio-filter li .active{
+	border: 1px solid #f4a536;
+	color: #373737;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	opacity: 1;
+}
+
+#portfolio .portfolio-filter li a {
+	color: #373737;
+	font-size: 16px;
+	text-transform: uppercase;
+	border: none;
+	background: rgba(67, 72, 78, 0);
+	opacity: .8;
+	border: 1px solid rgba(252, 119, 0, 0);
+	border-radius: inherit;
+}
+
+.portfolio-items > div{
+  padding:0px;
+}
+
+.portfolio-items img{
+  width:100%;
+}
+
+.view {  
+  cursor: default;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  width:100%;
+}
+
+.efffect h4 {  
+	opacity: 0;
+	transform: scale(0);
+	transition: all 0.5s linear 0s;
+}
+
+.efffect h3 {
+	opacity: 0;
+	transform: scale(0);
+	-webkit-transition: all 0.5s linear 0s;
+	-moz-transition: all 0.5s linear 0s;
+	-ms-transition: all 0.5s linear 0s;
+	-o-transition: all 0.5s linear 0s;
+	transition: all 0.5s linear 0s;
+}
+
+.efffect img {
+	transform: scaleY(1);
+	-moz-transform: scaleY(1);
+	-webkit-transform: scaleY(1);
+	-o-transform: scaleY(1);
+	-ms-transform: scaleY(1);  
+	transition: all 0.7s ease-in-out 0s;
+	-moz-transition: all 0.7s ease-in-out 0s;
+	-webkit-transition: all 0.7s ease-in-out 0s;
+	-o-transition: all 0.7s ease-in-out 0s;
+}
+
+.view img {
+	display: block;
+	position: relative;
+}
+
+.efffect .mask {
+	background-color: #f4a536;
+    border:4px solid #333333;
+	-webkit-transition: all 0.5s linear 0s;
+	-moz-transition: all 0.5s linear 0s;
+	-ms-transition: all 0.5s linear 0s;
+	-o-transition: all 0.5s linear 0s;
+	transition: all 0.5s linear 0s;
+	opacity: 0
+}
+
+.view .mask, .view .content {
+	height:100%;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	width:100%;
+}
+
+.mask h3 {
+	color: #3b3b3b;
+	font-family: cabin;
+	font-size: 22px;
+	font-weight: 700;
+	margin-top: 40px;
+	text-transform: uppercase;
+	transition: height 500ms ease 0s;
+}
+
+.mask h4 {
+	color:#3b3b3b !important;
+	font-family: roboto;
+	font-size: 15px !important;
+	font-weight: normal;
+	line-height:24px;
+	padding: 0 35px 5px;
+}
+
+.mask i {
+	border: 2px solid #333;
+	border-radius: 50%;
+	color: #333;
+	font-size: 17px;
+	margin-left: 8px;
+	padding: 8px;
+}
+
+.mask i:hover{
+	background-color:#f4a536;
+	color:#fff;  
+}
+
+
+
+/*====================
+======Clients CSS=====
+======================*/
+
+.efffect img {
+   -webkit-transform: scaleY(1);
+   -moz-transform: scaleY(1);
+   -o-transform: scaleY(1);
+   -ms-transform: scaleY(1);
+   transform: scaleY(1);
+   -webkit-transition: all 0.7s ease-in-out;
+   -moz-transition: all 0.7s ease-in-out;
+   -o-transition: all 0.7s ease-in-out;
+   -ms-transition: all 0.7s ease-in-out;
+   transition: all 0.7s ease-in-out;
+}
+.efffect .mask {
+   -webkit-transition: all 0.5s linear;
+   -moz-transition: all 0.5s linear;
+   -o-transition: all 0.5s linear;
+   -ms-transition: all 0.5s linear;
+   transition: all 0.5s linear;
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+   cursor: zoom-in;
+}
+.efffect h4 {   
+   background: transparent;
+   -webkit-transform: scale(0);
+   -moz-transform: scale(0);
+   -o-transform: scale(0);
+   -ms-transform: scale(0);
+   transform: scale(0);
+   -webkit-transition: all 0.5s linear;
+   -moz-transition: all 0.5s linear;
+   -o-transition: all 0.5s linear;
+   -ms-transition: all 0.5s linear;
+   transition: all 0.5s linear;
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+}
+.efffect h3 {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+   font-size:22px;
+   -webkit-transform: scale(0);
+   -moz-transform: scale(0);
+   -o-transform: scale(0);
+   -ms-transform: scale(0);
+   transform: scale(0);
+   -webkit-transition: all 0.5s linear;
+   -moz-transition: all 0.5s linear;
+   -o-transition: all 0.5s linear;
+   -ms-transition: all 0.5s linear;
+   transition: all 0.5s linear;
+}
+.mask a i {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+   -webkit-transform:rotate(-180deg);
+   -moz-transform:rotate(-180deg);
+   -o-transform:rotate(-180deg);
+   -ms-transform:rotate(-180deg);
+   transform:rotate(-180deg);
+   -webkit-transition:all 0.5s linear 0.7s;
+   -moz-transition: all 0.5s linear 0.7s;
+   -o-transition:all 0.5s linear 0.7s;
+   -ms-transition:all 0.5s linear 0.7s;
+   transition:all 0.5s linear 0.7s;
+}
+.efffect:hover img {
+   -webkit-transform: scale(10);
+   -moz-transform: scale(10);
+   -o-transform: scale(10);
+   -ms-transform: scale(10);
+   transform: scale(10);
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   filter: alpha(opacity=0);
+   opacity: 0;
+}
+.efffect:hover .mask {
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+   filter: alpha(opacity=100);
+   opacity: 1;
+}
+.efffect:hover h4,.efffect:hover h3,.efffect:hover a i {
+   -webkit-transform: scale(1);
+   -moz-transform: scale(1);
+   -o-transform: scale(1);
+   -ms-transform: scale(1);
+   transform: scale(1);
+   -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+   filter: alpha(opacity=100);
+   opacity: 1;
+}
+
+.clientDiv {
+    padding: 50px 0;
+}
+.clientDiv h1 {
+    color: #030303;
+    font-size: 27px;
+    letter-spacing: 1px;
+}
+
+.clientDiv h1 span {
+    color: #f4a536;
+}
+
+/* Testimonial */
+.testMain{ background:url(../img/visiton-bg.jpg) no-repeat; background-size:cover;background-attachment:fixed;padding:100px 0;}
+.headdingDiv h1{color:#f4a536;font-size:27px;margin-bottom:15px;}
+
+.headdingDiv p{ color:#fff; font-size:16px; margin-bottom:50px; padding-top:0px;}
+.opinion{padding:50px 78px 0;}
+.testMain .item blockquote {border-left: none;margin: 0;}
+.testMain .item  img{margin-top:30px; border-radius:50%;}
+.glp{margin-top:10px;}
+.glp span{padding-left:10px; color:#f4a536;}
+
+.item blockquote p { font-size:16px; color:#dddddd;}
+.item blockquote small { font-size:16px; color:#dddddd; margin-top:60px;}
+.item blockquote small i{ font-size:13px; color:#f4a536; display:block;margin-top:10px; }
+
+/* footer */
+footer{ background: rgba(0, 0,0, 0.9); font-size:14px; padding-top:35px;color:#e4e4e4;}
+footer .footerMain{padding:0 5%;}
+.foorSite ul{ list-style:none; padding-left:0px;}
+.foorSite ul li{ padding-bottom:6px;}
+.foorSite ul li a{color:#e4e4e4;}
+.foorSite ul li a:hover{color:#18bb7c;}
+footer h4{ font-size:15px;letter-spacing:1px;margin-bottom:6px;margin-top:35px;  color:#f4a536}
+footer h5{font-size:15px; margin-bottom:10px;}
+footer hr{border-top: 1px solid #f4a536;}
+
+.followUs ul{ list-style:none; padding-left:0px; margin-left:0px; }
+.followUs li{ padding-bottom:6px; float:left; background:#e9e9e9; width:30px;height:30px; border-radius:50%; text-align:center; line-height:30px; margin-right:7px; margin-bottom:10px;}
+.followUs li a{color:#e4e4e4;}
+.followUs ul li a:hover{color:#f4a536;}
+.trusted{margin-top:10px; font-size:12px; color:#e9e9e9;}
+.counter{ font-size:40px; font-weight:700; line-height:40px}
+.ulmar{margin-left:50px;}
+.copyRight{background:#f4a536; padding-top:10px;font-size:12px;color:#fff; margin-top:30px;}
+.copyR p{padding-top:5px;padding-bottom:5px;}
+.copyR a{color:#090909}
+.addr  a{color:#fff;}
+.addr  a:hover{color:#f4a536}
+
+/* Inside Page CSS */
+
+.aboutImg img{width:100%;}
+.breadcrumb{
+    padding: 15px 0px 30px;
+    margin-bottom: 0px;
+    list-style: none;
+    background:none !important;
+    border-radius: 0px;
+}
+.breadcrumb a{ color:#f4a536;}
+.breadcrumb a:hover{ color:#000;}
+.shadowDiv{box-shadow:0px 0 5px #e7e7e7; margin-bottom:50px;}
+.prdDesign{padding:20px; font-size:15px;}
+
+
+.prdDesign h1{ font-size:20px; padding-bottom:15px; margin-top:0px; color:#f4a536;}
+.prdDesign h4{ font-size:20px; padding:20px 0 10px; color:#ffa800;}
+.prdDesign .quote-btn {
+    background: #f4a536 none repeat scroll 0 0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0 auto 15px;
+    max-width: 300px;
+    transition: background-color 0.5s ease 0s;	margin-top: 20px !important;
+}
+.prdDesign .quote-btn:hover{
+    background: #272727 none repeat scroll 0 0;
+    transition: background-color 0.5s ease 0s;
+}
+.prodImage img {
+    width: 100%;
+    margin-bottom: 5px;
+    max-height: 250px;
+    box-shadow: 0 0 1px #ccc;
+    min-width: 300px;
+	border-radius:8px;
+}
+.prodImage {
+    width: 300px;
+    margin-left: 30px;
+}.hghg  .item img{border-radius:8px;}
+.prod-row .quote-btn {
+    background: #cb0000 none repeat scroll 0 0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0 auto 15px;
+    max-width: 250px;
+    transition: background-color 0.5s ease 0s;
+}
+.prod-row .quote-btn {
+    margin-bottom: 0px;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0 auto 15px auto;
+}
+
+.shadowLeft{box-shadow:0px 0 5px #e7e7e7; margin-bottom:15px;}
+.insidLeft h2{margin-top:15px; padding-left:20px; margin-bottom:15px; font-size:16px}
+
+.shadowLeft ul{ padding:0px; margin:0px;}
+.shadowLeft li{ padding-left:12px;}
+.shadowLeft h4{ margin:20px 0;}
+.accordionButton {font-size:15px;padding: 7px 10px 10px 40px; background:url(../img/ar3.png) no-repeat 10px center; 	cursor:pointer; margin-bottom:0px; border-top:1px solid #e1e1e1;}
+.accordionButton a{ color:#f4a536;  outline:none !important  } 
+.accordionContent li a:hover{ color:#f4a536; }
+.accordion-btn-active{ background:url(../img/ar-dwn.png) no-repeat 13px center; color:#fff;}
+.accordion-btn-active a{ color: #f4a536; outline:none !important  }
+.accordionContent {	width: auto; margin-bottom:2px; }
+.accordionContent li{font-weight:normal; font-size:13px; border-bottom:1px dashed #e1e1e1;list-style-type:none;}
+.accordionContent li:last-child{ border-bottom:none !important }				  
+.accordionContent li a{ color: #646464; display:block;  outline:none !important;background:url(../img/ar4.png) no-repeat 5px center; padding:10px 0 10px 20px;}
+ul.accordionContent li ul{display:none}
+ul.accordionContent li:hover ul{display:block;}
+ul.accordionContent li:hover ul li{margin-right:15px; }
+ul.accordionContent li:hover ul li a{background:url(../img/ar4.png) no-repeat 5px center; padding:8px 0 8px 20px;}
+.modal-header {
+    background: #f4a536 none repeat scroll 0 0;
+    border-bottom: medium none;
+    border-radius: 5px 5px 0 0;
+    color: #fff;
+    overflow: hidden;
+}
+
+.modal-content .btn-warning:hover {
+    background: #f4a536 none repeat scroll 0 0;
+}
+.modal-content .btn-warning {
+    background: #000000 none repeat scroll 0 0; border:none;}
+.modal-content {
+    box-shadow:none;
+	margin-bottom:30px;
+}
+
+.modal-body .btn-danger{ background:#161616; border:none;}
+.modal-body .btn-danger:hover{ background:#f4a536;}
+
+.table-responsive{ margin-top:30px;}
+.table-responsive a {color:#f4a536}
+.table-responsive a:hover {color:#3b3b3b}
+.gallery img { height:auto;width: 100%;}
+.gallery-thumb {margin-bottom: 30px;position:reative;}
+th .btn{border-radius: 2px;margin-left:10px;}
+th .btn-default {
+    border: none;
+    padding: 0px 9px;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+
+/* Inside Page CSS */
+@media only screen and (max-width:768px){
+	header {padding: 0px 0px;}
+	.navbar-header img{ width:160px; height:auto;}
+	.nav > li > a {padding: 14px 5px;font-size:14px;}
+	.how h2 {font-size: 22px;padding: 23px 37px;}
+
+}
+@media only screen and (max-width:767px){
+	.navbar-toggle {background-color: #fff;}
+	.navbar-toggle .icon-bar {background: #173003;}	.carousel-inner > .item > a > img, .carousel-inner > .item > img{width:100%; height:200px;}
+	.prdText {margin-top: 15px;}
+	.ourProduct {padding: 30px 0 30px;}
+	.nav{ background:#f4a536; padding-left:30px; padding-right:30px;}
+	.dropdown-menu {background:#fff;font-size: 15px;}
+	.tbl-cell{ display:block;}
+	.villasDiv{text-align:left; padding-left:10px; padding-bottom:0px; margin-top:0px;}
+	footer{ padding-top:15px;}
+	.prodImage {width: 249px;margin-left: 0px;}
+	.prodImage img {min-width: 249px;}
+	.ulmar {margin-left: 0px;}	.carousel-caption{display:none}	.aboutDiv p {padding: 0px 0px 5px;}	.headding h1::before {left: 28.5%;}	.opinion {padding: 50px 0px 0;}	.courtBtn{display:block}	.contBtn{display:block}	.gg{display:none}
+}
+
+/*my css recent work */
+
+.pb-30{
+  padding-bottom: 30px;
+}
+/* carousel */
+.media-carousel 
+{
+  margin-bottom: 0;
+  padding: 0 40px 30px 40px;
+  margin-top: 30px;
+}
+/* Previous button  */
+.media-carousel .carousel-control.left 
+{
+  left: -12px;
+  background-image: none;
+  background: none repeat scroll 0 0 #222222;
+  border: 4px solid #FFFFFF;
+  border-radius: 23px 23px 23px 23px;
+  height: 40px;
+  width : 40px;
+    top: 38%;
+}
+/* Next button  */
+.media-carousel .carousel-control.right 
+{
+  right: -12px !important;
+  background-image: none;
+  background: none repeat scroll 0 0 #222222;
+  border: 4px solid #FFFFFF;
+  border-radius: 23px 23px 23px 23px;
+  height: 40px;
+  width : 40px;
+    top: 38%;
+}
+/* Changes the position of the indicators */
+.media-carousel .carousel-indicators 
+{
+  right: 50%;
+  top: auto;
+  bottom: 0px;
+  margin-right: -19px;
+}
+/* Changes the colour of the indicators */
+.media-carousel .carousel-indicators li 
+{
+  background: #c0c0c0;
+}
+.media-carousel .carousel-indicators .active 
+{
+  background: #333333;
+}
+.media-carousel img
+{
+  width: 100%;
+    min-height: 305px!important;
+    max-height: 305px!important;
+}
+/* End carousel */
+
+/*end code my css recent work */

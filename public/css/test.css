@@ -1,0 +1,179 @@
+/* Sticky Header */
+.sticky-header {
+    background-color: var(--theme-color-v2);
+}
+
+.header-style-one .header-lower .sticky-header .mobile-nav-toggler {
+    display: none;
+}
+
+.header-style-one .header-lower .sticky-header .main-menu .navigation > li.current > a,
+.header-style-one .header-lower .sticky-header .main-menu .navigation > li:hover > a {
+    color: var(--theme-color-v2);
+}
+
+.header-style-one .header-lower .sticky-header .main-menu .navigation > li {
+    padding: 0;
+}
+
+.header-style-one .header-lower .sticky-header.fixed-header {
+    height: 70px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background: #000;
+}
+
+.header-style-one .header-lower .sticky-header .main-menu {
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.header-style-one .header-lower .sticky-header .main-menu .navigation > li.current > a,
+.header-style-one .header-lower .sticky-header .main-menu .navigation > li:hover > a {
+    color: #fff;
+}
+
+.header-style-one .header-lower .sticky-header .main-menu .navigation li.dropdown .dropdown-btn {
+    color: #fff;
+}
+
+.header-style-one .header-lower .sticky-header .inner-container {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+@media (max-width: 767.98px) {
+    .header-style-one .header-lower .contact-info {
+        display: none;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .header-style-one .header-lower .contact-info {
+        display: unset;
+        width: 232px;
+        margin-left: -170px;
+    }
+}
+
+.header-style-one .header-lower .outer-box {
+    position: relative;
+}
+
+@media (max-width: 767.98px) {
+    .header-style-one .header-lower .outer-box:before {
+        display: none;
+    }
+}
+
+.header-style-one .header-lower .outer-box .theme-btn {
+    padding: 0 35px;
+    line-height: 59px;
+    height: 59px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: var(--text-font);
+}
+
+@media (max-width: 767.98px) {
+    .header-style-one .header-lower .outer-box .theme-btn {
+        display: none;
+    }
+}
+
+.header-style-one .header-lower .outer-box .theme-btn.v2 {
+    border-radius: 50px;
+}
+
+.header-style-one .header-lower .outer-box .search-btn {
+    margin-right: 30px;
+}
+
+@media (max-width: 767.98px) {
+    .header-style-one .header-lower .outer-box .search-btn {
+        display: none;
+    }
+}
+
+.header-style-one .header-lower .outer-box .search-btn .search {
+    font-size: 24px;
+    color: var(--theme-color-light);
+}
+
+.header-style-one.sp-version .header-lower .main-box .nav-outer {
+    margin-left: 90px;
+}
+
+/* Sticky Header */
+.sticky-header {
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 10px 0;
+    z-index: 99999;
+    background: #000;
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, .05);
+    box-shadow: 0 0 20px rgba(0, 0, 0, .05);
+}
+
+.sticky-header .inner-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.sticky-header.fixed-header {
+    opacity: 1;
+    z-index: 9999;
+    visibility: visible;
+}
+
+.sticky-header .logo {
+    padding: 10px 0;
+}
+
+.sticky-header .logo img {
+    max-height: 40px;
+}
+
+.sticky-header .nav-outer {
+    position: relative;
+    background: 0 0;
+    margin-left: auto;
+}
+
+.sticky-header .main-menu .navigation > li {
+    margin: 0;
+    margin-left: 60px;
+    padding: 20px 0;
+}
+
+.sticky-header .main-menu .navigation > li > a {
+    color: #fff;
+}
+
+.sticky-header .main-menu .navigation > li.current > a,
+.sticky-header .main-menu .navigation > li:hover > a {
+    color: var(--theme-color1);
+}
+
+.sticky-header .outer-box,
+.sticky-header .navbar-header {
+    display: none;
+}

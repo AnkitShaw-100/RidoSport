@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en"> 
+  <head>
+    <meta charset="utf-8">
+    <title>Desan International</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/animated-text.css">
+<link rel="stylesheet" type="text/css" href="css/slick-theme.css">
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<link href="css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style2.css">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://www.flaticon.com/uicons">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/navbars/navbar-2/css/navbar-2.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+        
+<style>
+    /* Awards Grid */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 30px;
+    }
+    
+    /* Award Cards */
+    .award-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    
+    .award-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      
+    }
+    
+    /* Company Logo */
+    .company-logo {
+      max-width: 100px;
+      margin-bottom: 20px;
+    }
+    
+    .company-logo1{
+        max-width: 145px;
+        margin-bottom: 20px;
+        height: 100px;
+    }
+    
+    /* Award Info */
+    .award-info h3 {
+      font-size: 1.8rem;
+      color: var(--theme-color1);
+      margin-bottom: 10px;
+    }
+    
+    .award-info p {
+      font-size: 1.5rem;
+      
+    }
+    .award-info .span-1 {
+        color: var(--theme-color2);
+        background-color: rgba(151, 23, 55, 0.381);
+        border:1px solid var(--theme-color1);
+        font-weight: bold;
+        border-radius: 20px;
+        padding: 5px;
+    }
+    .award-info span {
+        color:#000;
+        font-weight: bold;
+    }
+    .whatsapp {
+        position: fixed;
+        left: 31px;
+        bottom: 30px;
+        display: flex;
+        width: 50px;
+        height: 50px;
+        align-items: center;
+        justify-content: center;
+        transition: 0.5s;
+        z-index: 99
+    
+    }
+    
+    /* .whatsapp img {
+        width: 65px;
+    } */
+    
+    .phones {
+    position: fixed;
+    left: 18px;
+        bottom: 100px;
+        display: flex;
+        width: 70px;
+        height: 70px;
+        align-items: center;
+        justify-content: center;
+        transition: 0.5s;
+        z-index: 99;
+    }
+    /* .phones img {
+        width: 100px;
+    } */
+    </style>
+    <script>
+        // JavaScript to add animation on load
+    window.addEventListener('load', () => {
+      const awardCards = document.querySelectorAll('.award-card');
+      
+      awardCards.forEach((card, index) => {
+        setTimeout(() => {
+          card.style.opacity = 1;
+          card.style.transform = 'translateY(0)';
+        }, index * 200); // Staggered animation
+      });
+    });
+    
+    </script>
+</head>
+<body>
+<div class="page-wrapper">
+
+<div class="preloader"></div>
+
+  <header class="main-header header-style-one">
+    <!-- Original Header -->
+    <div class="header-lower-1" style="z-index: 99; background-color: whitesmoke; ">
+        <div class="auto-container" style="height:60px">
+            <div class="main-box" style="display: flex; justify-content: space-between; align-items: center; ">
+                
+                <!-- Logo box -->
+                <div class="logo-box" style="flex: 1; display: flex; justify-content: start;">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="images/logo-re.png" alt="Tronis" title="Tronis" style="max-height: 50px;">
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Navigation Menu -->
+                <div class="nav-outer" style="flex: 1;">
+                    <nav class="main-menu">
+                        <ul class="navigation" style="display: flex; gap: 15px;">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="current"><a href="about-us.html">About</a></li>
+                            <li class="dropdown"><a href="#">Products/Services</a>
+                                <ul>
+                                    <li class="dropdown"><a href="#">Outdoor Sports Flooring</a>
+                                        <ul>
+                                            <li><a href="#">Synthetic Athletic Tracks (WA/IAAF)</a></li>
+                                            <li><a href="#">Multipurpose PU Flooring</a></li>
+                                            <li><a href="#">Tennis Courts (ITF Approved)</a></li>
+                                            <li><a href="#">Badminton Court (BWF Approved)</a></li>
+                                            <li><a href="#">Activity Tracks (Jogging/Walking track)</a></li>
+                                            <li><a href="#">Kids Play Flooring</a></li>
+                                            <li><a href="#">Artificial Grass Sports Flooring (FIFA Preferred)</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="#">Indoor Sports Flooring</a>
+                                        <ul>
+                                            <li><a href="#">Indoor Polyurethane Flooring</a></li>
+                                            <li><a href="#">Wooden Flooring</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="#">Flooring Equipment</a>
+                                        <ul>
+                                            <li><a href="#">Primer</a></li>
+                                            <li><a href="#">Resurfacer</a></li>
+                                            <li><a href="#">Rubber Cushion</a></li>
+                                            <li><a href="#">Acrylic Color</a></li>
+                                            <li><a href="#">Outdoor Spray Coatings</a></li>
+                                            <li><a href="#">Line Paints</a></li>
+                                            <li><a href="#">Pore Sealers</a></li>
+                                            <li><a href="#">Self Leveling compounds</a></li>
+                                            <li><a href="#">Adhesives</a></li>
+                                            <li><a href="#">Accelerators</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="#">Sports Equipment</a>
+                                        <ul>
+                                            <li><a href="#">Basketball Pole (Fixed & Adjustable)</a></li>
+                                            <li><a href="#">Football</a></li>
+                                            <li><a href="#">Hockey (Goal Post)</a></li>
+                                            <li><a href="#">Handball</a></li>
+                                            <li><a href="#">Badminton</a></li>
+                                            <li><a href="#">Tennis</a></li>
+                                            <li><a href="#">Volleyball</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="design-court/design-court.html">Design Court</a>
+                    <ul>
+                      <li><a href="design-court/basketball.html">Basketball Court</a></li>
+                      <li><a href="design-court/handball-court.html">Handball Court</a></li>
+                      <li><a href="design-court/badminton.html">Bandminton Court</a></li>
+                      <li><a href="design-court/tennis-court.html">Tennis Court</a></li>
+                      <li><a href="design-court/futsal-court.html">Futsal Court</a></li>
+                      <li><a href="design-court/volleyball.html">Volleyball Court</a></li>
+                    </ul>
+                            </li>
+                            <li><a href="#">Blogs</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+    
+                <!-- Mobile Nav Toggler -->
+                <div class="outer-box" style=" align-items: center; gap: 10px;">
+                    <div class="mobile-nav-toggler">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="menu-backdrop"></div>
+        <nav class="menu-box">
+            <div class="upper-box">
+                <div class="nav-logo"><a href="index.html"><img src="images/logo-re.png" alt title></a></div>
+                <div class="close-btn"><i class="icon fa fa-times"></i></div>
+            </div>
+            <ul class="navigation clearfix ">
+                
+            </ul>
+            <ul class="contact-list-one">
+                <!-- <li>
+                    <div class="contact-info-box">
+                        <i class="icon lnr-icon-phone-handset"></i>
+                        <span class="title">Call Now</span>
+                        <a href="tel:+92880098670">+92 (8800) - 98670</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact-info-box">
+                        <span class="icon lnr-icon-envelope1"></span>
+                        <span class="title">Send Email</span>
+                        <a href="/cdn-cgi/l/email-protection#9df5f8f1edddfef2f0edfcf3e4b3fef2f0"><span class="__cf_email__" data-cfemail="0d6568617d4d6e62607d6c6374236e6260">[email&#160;protected]</span></a>
+                    </div>
+                </li> -->
+                <!-- <li>
+                    <div class="contact-info-box">
+                        <span class="icon lnr-icon-clock"></span>
+                        <span class="title">Working Hours</span>
+                        Mon - Sat 8:00 - 6:30, Sunday - CLOSED
+                    </div>
+                </li> -->
+            </ul>
+            <ul class="social-links">
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+        </nav>
+    </div>
+
+
+  <!-- Sticky Header (Original Header as Sticky) -->
+  <!-- <div class="sticky-header">
+    <div class="auto-container" style="height:60px">
+        <div class="inner-container " style="display: flex;
+        align-content: flex-end;
+        justify-content: space-between;
+        align-items: center;">
+
+        <div class="logo-box" style="flex: 1; display: flex; justify-content: start;">
+            <div class="logo"><a href="index.html"><img src="images/logo-re.png" alt title="Tronis" style="max-height: 50px;"></a></div>
+        </div>
+
+        <div class="nav-outer" style="display: flex; align-items: center; gap: 10px;">
+          <nav class="main-menu">
+            <div class="navbar-collapse show collapse clearfix">
+            <ul class="navigation">
+            
+            </ul>
+            </div>
+            </nav>
+        </div>
+    </div>
+    </div>
+  </div> -->
+  
+  <div class="sticky-header">
+    <div class="auto-container" style="height:60px">
+      <div class="inner-container" style="display: flex;
+      align-content: flex-end;
+      justify-content: space-between;
+      align-items: center;">
+        <div class="logo-box" style="flex: 1; display: flex; justify-content: start;">
+          <div class="logo">
+            <a href="index.html">
+              <img src="images/logo-re.png" alt title="Tronis" style="max-height: 50px;">
+              <!-- <img src="images/logo-re.png" alt title="Tronis" style="max-height: 50px;"> -->
+            </a>
+          </div>
+        </div>
+      
+      <div class="nav-outer">
+        <nav class="main-menu">
+          <div class="navbar-collapse show collapse clearfix">
+            <ul class="navigation">
+            
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="outer-box">
+
+        <div class="mobile-nav-toggler">
+        <i class="fa fa-bars"></i>
+        </div>
+    </div>
+
+      </div>
+    </div>
+  </div>
+
+  </header>
+
+
+<section class="page-title" style="background-image: url(images/resized_about-3_1920x420.jpg);">
+    <div class="auto-container">
+        <div class="title-outer">
+            <h1 class="title">About Us</h1>
+            <ul class="page-breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+
+<!--==================================================-->
+<!-- end rido about us Area -->
+<!--==================================================-->
+<div class="about-us-area" style="background: url('images/about-us-she.png') no-repeat; background-size: cover;">
+	<div class="container" >
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="section-title text-left">
+					<h5 class="section-sub-title">ABOUT RIDOSPORTS</h5>
+					<h1 class="section-main-title">One stop Solution for </h1>
+					<h1 class="section-main-title"><span>Sports Infrastructure</span></h1>
+					<p class="section-title-descr">Rido Sports offers premier flooring solutions tailored to meet the highest standards of quality and performance. Our services ensure durability, safety, and aesthetic appeal for various sports facilities.
+					</p>
+				</div>
+				<div class="about-us-content">
+					<div class="about-us-list">
+						<ul>
+							<li><span>Premium Synthetic Flooring</span></li>
+                            <li><span>Custom Court Design</span></li>
+                            <li><span>Sports Equipment</span></li>
+							<li><span>24 Hour's Customer Service</span></li>
+						</ul>
+					</div>
+					<div class="rido-btn">
+						<a href='/about-us'>EXPLORE MORE
+							<div class="rido-hover-btn hover-bx"></div>
+							<div class="rido-hover-btn hover-bx2"></div>
+							<div class="rido-hover-btn hover-bx3"></div>
+							<div class="rido-hover-btn hover-bx4"></div>
+						</a>
+					</div>
+					<!-- <div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="single-counter-box">
+							<div class="counter-icon">
+								<img src="images/counter-icon.png" alt="icon">
+							</div>
+							<div class="counter-content">
+								<h4 class="counter">826</h4>
+								<span>+</span>
+								<p>Satisfied Clients</p>
+							</div>
+						</div>
+					</div> -->
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="about-us-thumb">
+					<div class="about-us-img">
+						<img src="images/about-us-thu.png" alt="thumb">
+					</div>
+					
+					<div class="about-us-shape">
+						<img src="images/us-shape.png" alt="shape">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="about2-us-shape">
+			<img src="images/about-us-sh.png" alt="shape">
+		</div>
+
+	</div>
+</div>
+<!--==================================================-->
+
+<!--==================================================-->
+
+
+<div class="project-area style-two" style=" 
+background-repeat: no-repeat;
+background-position: center center;
+background-size: cover;">
+    <div class="container-fluid">
+        <div class="row project align-items-center">
+            <div class="col-lg-6">
+                <div class="section-title text-left">
+                    <h5 class="section-sub-title">RIDOSPORTS PRODUCT</h5>
+                    <h1 class="section-main-title">Enhance your game with our   <span>Premier Products</span></h1>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="project-right">
+                    <div class="rido-btn">
+                        <a href='/project-details'>VIEW  PROJECT DETAIL
+                            <div class="rido-hover-btn hover-bx"></div>
+                            <div class="rido-hover-btn hover-bx2"></div>
+                            <div class="rido-hover-btn hover-bx3"></div>
+                            <div class="rido-hover-btn hover-bx4"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row carousel">
+            <div class="project_list owl-carousel">
+                <!-- <div class="col-lg-12 col-md-12">
+                    <div class="project-single-box">
+                        <div class="project-thumb">
+                            <img src="images/project1.png" alt="project1">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title"><a href='/project-details'>Project for Marketing</a></h3>
+                            <p class="project-text">Software</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="project-single-box">
+                        <div class="project-thumb">
+                            <img src="images/project1.png" alt="project1">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title"><a href='/project-details'>Digital Product Design</a></h3>
+                            <p class="project-text">Software</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="project-single-box">
+                        <div class="project-thumb">
+                            <img src="images/project1.png" alt="project1">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title"><a href='/project-details'>Project for Marketing</a></h3>
+                            <p class="project-text">Software</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="project-single-box">
+                        <div class="project-thumb">
+                            <img src="images/project1.png" alt="project1">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title"><a href='/project-details'>Digital Product Design</a></h3>
+                            <p class="project-text">Software</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="project-single-box">
+                        <div class="project-thumb">
+                            <img src="images/project1.png" alt="project1">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title"><a href='/project-details'>Software Development</a></h3>
+                            <p class="project-text">Software</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="project-single-box">
+                        <div class="project-thumb">
+                            <img src="images/project1.png" alt="project1">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title"><a href='/project-details'>CMC Softwar Solution</a></h3>
+                            <p class="project-text">Software</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="project-single-box">
+                        <div class="project-thumb">
+                            <img src="images/project1.png" alt="project1">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title"><a href='/project-details'>Software Development</a></h3>
+                            <p class="project-text">Software</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="project-single-box">
+                        <div class="project-thumb">
+                            <img src="images/project1.png" alt="project1">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title"><a href='/project-details'>App Development</a></h3>
+                            <p class="project-text">Software</p>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="col-lg-12 col-md-12">
+                    <div class="project-single-box">
+                        <div class="project-thumb">
+                            <img src="images/Rido/iStock-497447266.jpg" alt="project1">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title"><a href='/project-details'>Running Track</a></h3>
+                            <p class="project-text">This project involved the design and installation of a synthetic running track for an athletic facility, emphasizing durability and compliance with industry standards.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="project-single-box">
+                        <div class="project-thumb">
+                            <img src="images/Rido/Sandwich/DSC00172.jpg" alt="project1">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title"><a href='/project-details'>Volleyball Court Design</a></h3>
+                            <p class="project-text">Designed and implemented a professional-grade volleyball court, focusing on the quality of materials and meeting official sports regulations.</p>
+                        </div>
+                    </div>
+                </div> 
+                <div class="col-lg-12 col-md-12">
+                    <div class="project-single-box">
+                        <div class="project-thumb">
+                            <img src="images/Rido/Sandwich/DSC00172.jpg" alt="project1">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title"><a href='/project-details'>Football Court Design</a></h3>
+                            <p class="project-text">
+                A football field project that involved synthetic turf installation, complete with drainage systems, ensuring durability for intensive sports usage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--==================================================-->
+
+<section class="award-section" style="text-align: center; padding:50px 50px 100px 50px;">
+        <div class="sec-title text-center">
+            <h2>Accreditation</h2>
+        </div>
+        <div class="awards-grid">
+        
+        <!-- Award 1 -->
+        <div class="award-card">
+            <img src="images/certified _by/bwf.png" alt="Company Logo" class="company-logo">
+            <div class="award-info">
+            <h3>Badminton World Federation</h3>
+            <p><span class="span-1">Award For</span> <span>Grade 1: BWF International Elite (A-Tested for use as Badminton Floor Surface) & (B-Tested for use only as sub-floor for Badminton Court Mat)</span></p>
+            </div>
+        </div>
+        
+        <!-- Award 2 -->
+        <div class="award-card">
+            <img src="images/certified _by/ITF.png" alt="Company Logo" class="company-logo1">
+            <div class="award-info">
+            <h3>International Tennis Federation</h3>
+            <p><span class="span-1">Award For</span> <span>CLASSIFIED COURT PACE-CATEGORY 3 - Medium</span></p>
+            </div>
+        </div>
+        
+        <!-- Award 3 -->
+        <div class="award-card">
+            <img src="images/certified _by/World Athletics.png" alt="Company Logo" class="company-logo">
+            <div class="award-info">
+            <h3>World Athletics</h3>
+            <p><span class="span-1">Award For</span> <span>World Athletics is pleased to certify that the following product meets all the technical requirements of the World Athletics Rules for the relevant competitions</span></p>
+            </div>
+        </div>
+        </div>
+    
+</section>
+
+
+<footer class="main-footer footer-style-one" style="background:url('images/footer-bg.png') no-repeat center center; background-size: cover; ">
+
+    <div class="widgets-section">
+        <div class="auto-container">
+            <div class="row">
+                <!-- Contact Information Column -->
+                <div class="footer-column col-lg-3 col-sm-6">
+                    <div class="footer-widget contact-widget">
+                        <div class="sec-title">
+                            <span style="font-size:2.8rem; color: white;">Ace your game with our Sports Portfolio</span>
+                        </div>
+                        <div class="widget-content">
+                            <div class="content-box">
+                                <div class="icon-box">
+                                    <i class="flaticon-call"></i>
+                                </div>
+                                <span>Call Us</span>
+                                <h6 class="title">
+                                    <a href="tel:9810000349" style="text-decoration: none; color: var(--theme-color4) !important;">(+91 9810-000-349)</a>
+                                    <a href="tel:9212091484" style="text-decoration: none; color: var(--theme-color4) !important;">(+91 9212-091-484)</a>
+                                </h6>
+                            </div>
+                            
+                            <div class="content-box">
+                                <div class="icon-box">
+                                    <i class="flaticon-envelope"></i>
+                                </div>
+                                <span>Mail us</span>
+                                <h6 class="title">
+                                    <a href="mailto:desaninternational@yahoo.com" style="text-decoration: none; color: var(--theme-color4) !important;">desaninternational@yahoo.com</a>
+                                </h6>
+                            </div>
+                            <div class="content-box">
+                                <div class="icon-box">
+                                    <i class="flaticon-map"></i>
+                                </div>
+                                <span>Locate Us</span>
+                                <h6 class="title">
+                                    <a href="https://maps.app.goo.gl/S3Ttb86VTQoANZEz9" style="text-decoration: none; color: var(--theme-color4) !important;">Desan International A2-39 , GD Steel Compound Near Ambika Steel Mill Industrial Area, Site IV Sahibabad, Ghaziabad - 201010, UP</a>
+                                </h6>
+                            </div>
+                            <!-- <div class="content-box">
+                                <div class="icon-box">
+                                    <i class="flaticon-clock-3"></i>
+                                </div>
+                                <span>Open Time</span>
+                                <h6 class="title" style="text-decoration: none; color: var(--theme-color4) !important;">09 AM - 06 PM, Sun - Thu</h6>
+                            </div> -->
+                            <ul class="social-icons">
+                                <li><a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                <li><a href="#" aria-label="Behance"><i class="fa-brands fa-behance"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services Column -->
+                <div class="footer-column col-lg-3 col-sm-6">
+                    <div class="footer-widget links-widget pl-lg-30 pl-md--0">
+                        <h4 class="widget-title">Our Services</h4>
+                        <div class="widget-content">
+                            <ul class="user-links style-two">
+                                <li><a href="#">Outdoor Flooring</a></li>
+                                <li><a href="#">Indoor Flooring</a></li>
+                                <li><a href="#">Football Court Design</a></li>
+                                <li><a href="#">Volleball Court Design</a></li>
+                                <li><a href="#">Synthetic Flooring</a></li>
+                                <!-- Uncomment if needed -->
+                                <!-- <li><a href="#">Wooden Services</a></li> -->
+                                <!-- <li><a href="#">Corporate Tiles</a></li> -->
+                                <!-- <li><a href="#">Carpet Setup</a></li> -->
+                                <!-- <li><a href="#">Tiles Setup</a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Useful Links Column -->
+                <div class="footer-column col-lg-3 col-sm-6">
+                    <div class="footer-widget links-widget two pl-lg-30 pl-md--0">
+                        <h4 class="widget-title">Our Products</h4>
+                        <div class="widget-content">
+                            <ul class="user-links style-two">
+                                <li><a href="#">Football</a></li>
+                                <li><a href="#">Hockey(Goal Post)</a></li>
+                                <li><a href="#">Handball</a></li>
+                                <li><a href="#">Bandminton</a></li>
+                                <li><a href="#">Tennis</a></li>
+                                <li><a href="#">Volleyball</a></li>
+                                <!-- Uncomment if needed -->
+                                <!-- <li><a href="#">Tiles Toilet Stones</a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form Column -->
+                <div class="footer-column col-lg-3 col-sm-6">
+                    <div class="footer-widget about-widget">
+                        <h4 class="widget-title">Contact Us</h4>
+                        <div class="form-column">
+                            <form method="post" action="get" id="contact-form">
+                            <div class="row">
+                            <div class="form-group col-lg-12">
+                            <div class="input-outer">
+                            <input type="text" name="Name" placeholder="Your Name" required>
+                            <span class="icon fa fa-user"></span>
+                            </div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                            <div class="input-outer">
+                            <input type="email" name="Email" placeholder="Email Id" required>
+                            <span class="icon fa fa-envelope"></span>
+                            </div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                            <div class="input-outer">
+                            <input type="text" name="Phone" placeholder="Phone Number" required>
+                            <span class="icon fa fa-phone"></span>
+                            </div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                            <div class="input-outer">
+                            <textarea name="message" placeholder="Message" required></textarea>
+                            <span class="icon fa fa-paper-plane"></span>
+                            </div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                            <button class="theme-btn" type="submit" name="submit-form"><span class="btn-title">send your message</span><i class="flaticon-arrow-pointing-to-right btn-icon ml-10"></i></button>
+                            </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="auto-container">
+            <div class="inner-container">
+                <div class="copyright-text">© Copyright 2024 Designed by <a href="https://webiantdigitalindia.com/" target="_blank" rel="noopener noreferrer">WebiantDigitalIndia</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="scroll-to-top scroll-to-target arrow-btn" data-target="html">
+        <i class="fa-sharp fa-solid fa-arrow-up"></i>
+    </div>
+</footer>
+
+    <a href="https://wa.me/+919212091484" class="whatsapp">
+        <img src="images/whatsapp.gif" alt="WhatsApp" >
+    </a>
+    <a href="tel:9810000349" class="phones">
+        <img src="images/call.gif" alt="Call" >
+    </a>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script>
+
+$(document).ready(function(){
+$('.owl-carousel').owlCarousel({
+loop: true,         // Enable infinite looping
+margin: 10,         // Space between items
+nav: true,          // Enable next/prev buttons
+dots: true,         // Show dots
+autoplay: true,     // Enable autoplay
+autoplayTimeout: 5000, // Time between slides
+responsive: {
+    0: {
+    items: 1        // Show 1 item on small screens
+    },
+    600: {
+    items: 1        // Show 1 item on medium screens
+    },
+    1000: {
+    items: 1        // Show 1 item on large screens
+    }
+}
+});
+});
+
+// document.addEventListener("DOMContentLoaded", function() {
+//     // Initialize Swiper
+//     var swiper = new Swiper('.swiper-container', {
+//         slidesPerView: 3, // Adjust the number of slides per view
+//         spaceBetween: 30,
+//         navigation: {
+//             nextEl: '.swiper-button-next',
+//             prevEl: '.swiper-button-prev',
+//         },
+//         pagination: {
+//             el: '.swiper-pagination',
+//             clickable: true,
+//         },
+//         loop: true,
+//     });
+
+    
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Initialize Swiper
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3, // Adjust the number of slides per view
+            spaceBetween: 30,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            loop: true,
+        });
+                // Initialize LightGallery
+    lightGallery(document.getElementById('lightgallery'), {
+        selector: 'a',
+        plugins: [lgThumbnail, lgFullscreen],
+        speed: 500,
+    });
+    });
+
+
+
+</script>
+  
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0/lightgallery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0/plugins/fullscreen/lg-fullscreen.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- Remove duplicate slick.min.js -->
+<script src="js/slick.min.js"></script>
+<script src="js/slick-animation.min.js"></script>
+<script src="js/jquery.fancybox.js"></script>
+<script src="js/progress-bar.js"></script>
+<script src="js/wow.js"></script>
+<script src="js/appear.js"></script>
+<script src="js/mixitup.js"></script>
+<script src="js/script.js"></script>
+<!-- bootstrap js -->	
+<script src="js/bootstrap.min.js"></script>
+<!-- carousel js -->
+<script src="js/owl.carousel.min.js"></script>
+<!-- counterup js -->
+<script src="js/jquery.counterup.min.js"></script>
+<!-- waypoints js -->
+<script src="js/waypoints.min.js"></script>
+<!-- wow js -->
+<script src="js/wow.js"></script>
+<!-- imagesloaded js -->
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<!-- venobox js -->
+<script src="venobox/venobox.js"></script>
+<!--  animated-text js -->	
+<script src="js/animated-text.js"></script>
+<!-- venobox min js -->
+<script src="venobox/venobox.min.js"></script>
+<!-- isotope js -->
+<script src="js/isotope.pkgd.min.js"></script>
+<!-- jquery meanmenu js -->	
+<script src="js/jquery.meanmenu.js"></script>
+<!-- jquery scrollup js -->	
+<script src="js/jquery.scrollUp.js"></script>
+<script src="js/jquery.barfiller.js"></script>
+<script src="js/typed.js"></script>
+<!-- jquery js -->	
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="js/vanilla-tilt.min.js"></script>
+<!-- partial -->
+ 
+<script src="js/splide.min.js"></script>
+<!-- theme js -->	
+<script src="js/theme.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

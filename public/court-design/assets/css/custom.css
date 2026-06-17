@@ -1,0 +1,1718 @@
+/*Court Builder Tiysol*/
+
+
+@font-face {
+  font-family: "San Francisco Display Ultralight";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.eot?#iefix) format("embedded-opentype"), url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff2) format("woff2"), url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff) format("woff"), url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.ttf) format("truetype"), url("fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.svg#San Francisco Display Ultralight") format("svg")
+}
+
+
+@font-face {
+  font-family: "San Francisco Display Bold";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.eot?#iefix) format("embedded-opentype"), url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff2) format("woff2"), url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff) format("woff"), url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.ttf) format("truetype"), url("fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.svg#San Francisco Display Bold") format("svg")
+}
+
+@font-face {
+  font-family: "San Francisco Display Medium";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.eot?#iefix) format("embedded-opentype"), url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff2) format("woff2"), url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff) format("woff"), url(https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.ttf) format("truetype"), url("fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.svg#San Francisco Display Medium") format("svg")
+}
+
+.ios-font {
+    font-family: San Francisco Display Medium!important; 
+    color: #333!important;
+	font-size:16px;
+}
+
+
+body {
+    min-height: 100%;
+    background: whitesmoke;
+    color: #090d14;
+    /*font-family: proximanova, Arial;*/
+    overflow-y: scroll;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: 000;
+    padding: 0px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: transparent;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd}
+
+.show {display:block;}
+
+.custom-back
+{
+    float: left;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 1px solid #ffffff;
+    text-align: center;
+    padding: 5px;
+    color: inherit;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-transition: background 0.2s, color 0.2s;
+    -o-transition: background 0.2s, color 0.2s;
+    -webkit-transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s;
+}
+
+.border {
+    width: 84%;
+    height: 1px;
+    top: 100%;
+    left: 0;
+    background-color: #a3a3a4;
+}
+
+.border-right {
+    border-right: none;
+}
+
+
+#page_court_options {
+    position: relative;
+}
+
+#pages > div {
+    float: left;
+    width: 100%;
+    padding: 0 0.71429em;
+}
+
+#page_court_options #loader {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 500;
+}
+
+#page_court_options #loader img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+form.custom {
+}
+
+@media only screen and (min-width: 1024px)
+.court_options_settings {
+    padding-bottom: 0;
+}
+
+.court_options_settings {
+    position: relative;
+    z-index: 20;
+    padding-bottom: 20px;
+}
+
+.court_options_settings:after, .court_options_settings:before {
+    content: "";
+    display: table;
+}
+
+@media only screen and (min-width: 1024px)
+.court_options_settings > div:first-child {
+    border-left: none;
+}
+
+@media only screen and (min-width: 1024px)
+.court_options_settings .settings_options {
+    position: relative;
+    padding-left: 0.71429em;
+    padding-right: 0.71429em;
+    width: 12.5%;
+    float: left;
+}
+
+@media only screen and (min-width: 1024px)
+.court_options_settings .settings_options, .court_options_settings .settings_general_colors, .court_options_settings .settings_sport_elements, .court_options_settings .settings_court_elements {
+    border-bottom: none;
+    padding: 0;
+}
+
+.court_options_settings .settings_options .form_title, .court_options_settings .settings_general_colors .form_title, .court_options_settings .settings_sport_elements .form_title, .court_options_settings .settings_court_elements .form_title {
+    font-weight: normal;
+}
+
+.form_title {
+    font-family: "proximanova";
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+@media only screen and (min-width: 1024px)
+.court_options_settings .settings_general_colors > div > div, .court_options_settings .settings_options > div > div, .court_options_settings .settings_sport_elements > div > div, .court_options_settings .settings_court_elements > div > div {
+    position: relative;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    float: left;
+}
+
+@media only screen and (min-width: 1024px)
+.court_options_settings .settings_options > div > div > .dropdown, .court_options_settings .settings_general_colors > div > div > .dropdown, .court_options_settings .settings_sport_elements > div > div > .dropdown, .court_options_settings .settings_court_elements > div > div > .dropdown {
+    border: none;
+    height: auto;
+    width: auto;
+    padding: 0;
+    position: static;
+    float: left;
+}
+
+.court_options_settings .settings_options > div > div > .dropdown {
+    left: 0;
+    right: 0;
+}
+
+.court_options_settings .settings_options > div > div > .dropdown, .court_options_settings .settings_general_colors > div > div > .dropdown, .court_options_settings .settings_sport_elements > div > div > .dropdown, .court_options_settings .settings_court_elements > div > div > .dropdown {
+    position: absolute;
+    top: 0;
+    height: 35px;
+}
+
+/*main Court*/
+@media only screen and (min-width: 1024px)
+.court_options_settings .settings_general_colors {
+    position: relative;
+    padding-left: 0.71429em;
+    padding-right: 0.71429em;
+    width: 16.66667%;
+    float: left;
+}
+
+@media only screen and (min-width: 1024px)
+.court_options_settings .settings_options, .court_options_settings .settings_general_colors, .court_options_settings .settings_sport_elements, .court_options_settings .settings_court_elements {
+    border-bottom: none;
+    padding: 0;
+}
+
+@media only screen and (min-width: 1024px)
+.court_options_settings .settings_general_colors > div > div, .court_options_settings .settings_options > div > div, .court_options_settings .settings_sport_elements > div > div, .court_options_settings .settings_court_elements > div > div {
+    position: relative;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    float: left;
+}
+
+@media only screen and (min-width: 1024px)
+.court_options_settings .settings_options > div > div > .dropdown, .court_options_settings .settings_general_colors > div > div > .dropdown, .court_options_settings .settings_sport_elements > div > div > .dropdown, .court_options_settings .settings_court_elements > div > div > .dropdown {
+    border: none;
+    height: auto;
+    width: auto;
+    padding: 0;
+    position: static;
+    float: left;
+}
+
+dropdown_btn {
+    padding: 0;
+    line-height: 1;
+    font-size: 15px;
+}
+
+.court_options_settings .dropdown.disabled .dropdown_btn {
+    cursor: default;
+    position: relative;
+}
+
+.dropdown .dropdown_btn .arrow {
+    right: 0;
+}
+
+.court_options_settings .dropdown .dropdown_btn .arrow {
+    width: 8px;
+    height: 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background-position: 0 -205px;
+}
+
+.centered {
+    width: 100%;
+    margin-left: 260px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.position-img {
+     position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+}
+/*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX MULTISPORT PAGE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
+/*============================================= Surface Change Color==========================================*/
+.bright-blue-surface {
+
+}
+
+/*=============================================Basket Ball=============================================*/
+.basketball-top {
+    position: absolute;
+    top: 0;
+    left: 0px;
+    z-index: 6;
+}
+
+.Basketball-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 6;
+}
+
+.Basketball-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 6;
+}
+
+/*============================================*/
+.Basketball-surface-blue-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-surface-blue-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-surface-blue-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+/*============================================*/
+.Basketball-white-line-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-white-line-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-white-line-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+/*================== Dropdown Checkbox Line =========================*/
+.Basketball-mustard-line-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 6;
+}
+
+.Basketball-mustard-line-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 6;
+}
+
+.Basketball-mustard-line-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 6;
+}
+
+.Basketball-bright-red-line-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-bright-red-line-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-bright-red-line-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-black-line-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-black-line-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-black-line-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-white-line-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-white-line-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-white-line-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+/*==================XXXXXXXXXXXXXXXXXXXXXXXXX DropDown Checkbox Key XXXXXXXXXXXXXXXXXXXXXXXXX==========================*/
+/*======================= Basketball Titanium Key Color ========================*/
+.Basketball-surface-titanium-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-surface-titanium-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-surface-titanium-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+/*====================== Basketball Steel Blue Key Color ======================*/
+.Basketball-surface-steel-blue-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-surface-steel-blue-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-surface-steel-blue-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+/*====================== Basketball Kiwi Key Color ======================*/
+.Basketball-surface-kiwi-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-surface-kiwi-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-surface-kiwi-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+/*================= Basketball Burgundy Key Color ===========================*/
+.Basketball-surface-burgundy-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-surface-burgundy-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-surface-burgundy-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+/*========================== Basketball Sand Key Color ============================*/
+.Basketball-surface-sand-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-surface-sand-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-surface-sand-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+/*=========================== Basketball Black Key Color =========================*/
+.Basketball-surface-black-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-surface-black-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}   
+
+.Basketball-surface-black-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+/*========================== Basketball Purple Key Color ==========================*/
+.Basketball-surface-purple-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-surface-purple-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.Basketball-surface-purple-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;  
+}
+
+/*=====================================================Hockey/Futsal=====================================================*/
+.hockey-futsal-left {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 5;
+}
+
+
+.hockey-futsal-right {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 5;
+}
+
+.hockey-futsal-white-line-left {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 5;
+}
+
+.hockey-futsal-white-line-right {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 8;
+}
+
+/*=====================================================Racquet=====================================================*/
+.racquet-net {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+
+.racquest-surface-white {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 3;
+}
+
+.racquet-white-line {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 8;
+}
+
+/*=====================================================Volleyball=====================================================*/
+.volleyball-net {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+
+.volleyball-front {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+
+.volleyball-back {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+
+/*=====================================================Rebounder=====================================================*/
+.rebounder-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.rebounder-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+/*=====================================================Light=====================================================*/
+.light {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+
+/*=====================================================Fence=====================================================*/
+.fence-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.fence-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.fence-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.fence-bottom {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+
+.container2 {
+    position: relative;
+    color: white;
+}
+
+
+.box {
+    display: none;
+}
+
+
+/*========================================Main Courts Surface Color===============================*/
+.colors {
+    margin: 15px 0 5px 0;
+}
+.color_section {
+    display: none;
+    height: 200px;
+    overflow-y: hidden;
+	 padding-left:10px;
+}
+.colors .color_section.active {
+    display: block;
+}
+.colors .colors_wrapper {
+    height: 200px;
+    padding-right: 15px;
+}
+.scrollable.default-skin {
+    padding-right: 10px;
+    padding-bottom: 6px;
+}
+.scrollable {
+    position: relative;
+}
+.scroll-bar {
+    margin-right: 4px;
+    background-color: #e5e5e5;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+.scrollable.default-skin .scroll-bar.vertical {
+    width: 6px;
+}
+.scrollable .scroll-bar.vertical {
+    position: absolute;
+    right: 0;
+    height: 100%;
+}
+.scrollable .scroll-bar {
+    display: none;
+}
+.scroll-bar .thumb {
+    background-color: black;
+    opacity: 0.4;
+    border-radius: 3px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+.scrollable .scroll-bar.vertical .thumb {
+    width: 100%;
+    min-height: 10px;
+}
+.scrollable .scroll-bar .thumb {
+    position: absolute;
+}
+.scrollable .viewport {
+    position: relative;
+    overflow: hidden;
+}
+.colors_wrapper .overview {
+    width: 100%;
+}
+.scrollable .viewport .overview {
+    position: absolute;
+    overflow-y:scroll;
+    height: 180px;
+}
+
+/*ScrollView*/
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+/*End ScrollView*/
+
+
+
+color_preview {
+        width: 34px;
+    height: 30px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.color-item {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    cursor: pointer;
+    margin: 3px 0;
+}
+
+.color-preview {
+    width: 34px;
+    height: 30px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+span {
+    display: block;
+}
+
+.color-name {
+    position: absolute;
+    left: 45px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 10px;
+    color: #320a0f;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-transition: background-color 0.25s;
+    -o-transition: background-color 0.25s;
+    -webkit-transition: background-color 0.25s;
+    transition: background-color 0.25s;
+}
+
+/*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX BASKETBALL PAGE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
+.bp-basketball-top {
+    position: absolute;
+    margin-top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+
+.bp-Basketball-surface-blue-top {
+    position: absolute;
+    margin-top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.bp-Basketball-white-line-top {
+    position: absolute;
+    margin-top: 0px;
+    left: 0px;
+    z-index: 8;
+}
+
+.bp-futsal-white-line-middle {
+    left: 74px;
+    margin-top: -5px;
+    position: absolute;
+    z-index: 8;
+}
+
+
+.bp-Basketball-white-line-middle {
+    position: absolute;
+    margin-top: 0px;
+    left: 0px;
+    z-index: 8;
+}
+
+.bp-surface-border {
+    position: absolute;
+    margin-top: 0px;
+    left: 0px;
+    z-index: 1;
+}
+
+.bp-border {
+    position: absolute;
+    margin-top: 0px;
+    left: 0px;
+    z-index: 2;
+}
+
+/*=====================================================Volleyball=====================================================*/
+.bp-volleyball-net {
+    position: absolute;
+    margin-top: 50px;
+    left: 0px;
+    z-index: 9;
+}
+
+.bp-volleyball-front {
+    position: absolute;
+    margin-top: 50px;
+    left: 0px;
+    z-index: 9;
+}
+
+.bp-volleyball-back {
+    position: absolute;
+    margin-top: 50px;
+    left: 0px;
+    z-index: 9;
+}
+
+.bp-volleyball-surface {
+    position: absolute;
+    margin-top: 50px;
+    left: 0px;
+    z-index: 4;
+}
+
+.bp-volleyball-surface-line {
+    position: absolute;
+    margin-top: 50px;
+    left: 0px;
+    z-index: 5;
+}
+
+/*=====================================================Hockey/Futsal=====================================================*/
+.bp-hockey-futsal-left {
+    position: absolute;
+    margin-top: 50px;
+    left: 0px;
+    z-index: 5;
+}
+
+.bp-hockey-futsal-right {
+    position: absolute;
+    margin-top: 50px;
+    left: 0px;
+    z-index: 5;
+}
+
+.bp-hockey-futsal-white-line-left {
+    position: absolute;
+    margin-top: 50px;
+    left: 0px;
+    z-index: 5;
+}
+
+.bp-hockey-futsal-white-line-right {
+    position: absolute;
+    margin-top: 50px;
+    left: 0px;
+    z-index: 5;
+}
+
+/*=====================================================Rebounder=====================================================*/
+.bp-rebounder-left {
+    position: absolute;
+    margin-top:0px;
+    left: 0px;
+}
+
+/*=====================================================Light=====================================================*/
+.bp-light {
+    position: absolute;
+    top: 0px;
+    left:0px;
+    z-index: 9;
+}
+
+/*=====================================================Fence=====================================================*/
+.bp-fence-left {
+    position: absolute;
+    top:0px;
+    left: 0px;
+}
+
+.bp-fence-top {
+    position: absolute;
+    top:0px;
+    left: 0px;
+}
+
+.bp-fence-right {
+    position: absolute;
+    top:1px;
+    left: 2px;
+}
+
+.bp-fence-bottom {
+    position: absolute;
+    top:0px;
+    left: 0px;
+    z-index: 9;
+}
+
+
+/*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX RACQUET SPORTS PAGE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
+/*=============================================Basket Ball=============================================*/
+.rsp-basketball-top {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    z-index: 6;
+}
+
+.rsp-Basketball-left {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    z-index: 6;
+}
+
+.rsp-Basketball-right {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    z-index: 6;
+}
+
+.rsp-Basketball-surface-blue-right {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    z-index: 5;
+}
+
+.rsp-Basketball-surface-blue-left {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    z-index: 5;
+}
+
+.rsp-Basketball-surface-blue-top {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    z-index: 5;
+}
+
+.rsp-Basketball-white-line-top {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    z-index: 8;
+}
+
+.rsp-Basketball-white-line-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 8;
+}
+
+.rsp-Basketball-white-line-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 8;
+}
+
+.rsp-Basketball-middle-circle {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 8;
+}
+
+.rsp-line-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 8;
+}
+
+.rsp-line-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 8;
+}
+
+.rsp-line-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 8;
+}
+
+.rsp-key-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 8;
+}
+
+.rsp-key-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 8;
+}
+
+.rsp-key-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 8; 
+}
+
+.rsp-line-middle {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 8; 
+}
+
+.rsp-surface {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+}
+
+.rsp-border {
+    position: absolute;
+    top: 70px;
+    left: 168px;
+    z-index: 1;
+}
+
+/*=====================================================Hockey/Futsal=====================================================*/
+.rsp-hockey-futsal-left {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 9;
+}
+
+
+.rsp-hockey-futsal-right {
+    position: absolute;
+    top: 0px; 
+    left: 168px;
+    z-index: 9;
+}
+
+.rsp-hockey-left {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 9;
+}
+
+.rsp-hockey-right {
+    position: absolute;
+    top:0px; 
+    left: 0px;
+    z-index: 9;
+}
+
+.rsp-hockey-futsal-white-line-left {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 9;
+}
+
+.rsp-hockey-futsal-white-line-right {
+    position: absolute;
+    top: 0px; 
+    left: 168px;
+    z-index: 9;
+}
+
+
+.hockey-futsal-mustard-line-right {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 9;
+}
+
+.hockey-futsal-mustard-line-left {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 9;
+}
+
+.hockey-futsal-bright-red-line-right {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 9;
+}
+
+.hockey-futsal-bright-red-line-left {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 9;
+}
+
+.hockey-futsal-black-line-right{
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 9;
+}
+
+.hockey-futsal-black-line-left {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 9;
+}
+
+.hockey-futsal-white-line-right {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 9;
+}
+
+.hockey-futsal-white-line-left {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 9;
+}
+
+.hockey-futsal-grey-line-right {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 9;
+}
+
+.hockey-futsal-grey-line-left {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 9;
+}
+
+/*=====================================================Racquet=====================================================*/
+.rsp-racquet-net {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    z-index: 9;
+}
+
+.rsp-racquet-pole-front {
+    position: absolute;
+    top: 70px;
+    left: 168px;
+    z-index: 9;
+}
+
+.rsp-racquet-pole-back {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    z-index: 9;
+}
+
+.rsp-racquest-surface-white {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    z-index: 5;
+}
+
+.rsp-racquet-white-line {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    z-index: 8;
+}
+
+.rsp-racquet-line {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    z-index: 8;
+}
+
+.rsp-racquet-surface {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    z-index: 5;
+}
+
+/*=====================================================Rebounder=====================================================*/
+.rsp-rebounder-left {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+}
+
+
+/*=====================================================Light=====================================================*/
+.rsp-light-back {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    z-index: 9;
+}
+
+.rsp-light-front {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    z-index: 9;
+}
+
+/*=====================================================Fence=====================================================*/
+.rsp-fence-left {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+}
+
+.rsp-fence-top {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+}
+
+.rsp-fence-right {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+}
+
+.rsp-fence-bottom {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    z-index: 9;
+}
+
+/*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX Futsal PAGE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
+/*=============================================Basket Ball=============================================*/
+.fp-basketball-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 6;
+}
+
+.fp-Basketball-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 6;
+}
+
+.fp-Basketball-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 6;
+}
+
+.fp-Basketball-surface-blue-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.fp-Basketball-surface-blue-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.fp-Basketball-surface-blue-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.fp-Basketball-white-line-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 8;
+}
+
+.fp-Basketball-white-line-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 8;
+}
+
+.fp-Basketball-white-line-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 8;
+}
+
+.fp-Basketball-middle-circle {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 8;
+}
+
+.fp-basketball-surface {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+}
+
+.fp-basketball-border {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+}
+
+/*=====================================================Hockey/Futsal=====================================================*/
+.fp-hockey-futsal-left {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 5;
+}
+
+
+.fp-hockey-futsal-right {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 5;
+}
+
+.fp-hockey-futsal-white-line-left {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 5;
+}
+
+.fp-hockey-futsal-white-line-right {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    z-index: 8;
+}
+
+/*=====================================================Racquet=====================================================*/
+.fp-racquet-net {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+
+.fp-racquet-pole-front {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+
+.fp-racquet-pole-back {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+
+.fp-racquest-surface-white {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+}
+
+.fp-racquet-white-line {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 8;
+}
+
+/*=====================================================Volleyball=====================================================*/
+.fp-volleyball-net {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+
+.fp-volleyball-front {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+
+.fp-volleyball-back {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+
+.fp-volleyball-white-line {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+
+.fp-volleyball-surface-grey {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+}
+
+
+/*=====================================================Rebounder=====================================================*/
+.fp-rebounder-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+
+.fp-rebounder-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+
+
+/*=====================================================Light=====================================================*/
+.fp-light {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+
+/*=====================================================Fence=====================================================*/
+.fp-fence-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.fp-fence-top {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+	z-index: 9;
+
+	
+}
+
+
+.fp-fence-right {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.fp-fence-bottom {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+}
+
+/*Index Page*/
+.border-right {
+    border-right: 1px dashed #333;
+}
+
+.border-bottom {
+    border-bottom: 1px dashed #333;
+}
+
+.border-bottom-head {
+    border-bottom: 2px solid red;
+}
+
+
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20%;
+    border-width: 2px;
+    width: 84.2%;
+    border-color: red;
+} 
+
+.rotate {
+    -webkit-transition: -webkit-transform 0.4s ease-in-out;
+    -moz-transition: -moz-transform 0.4s ease-in-out;
+    -o-transition: -o-transform 0.4s ease-in-out;
+    -ms-transition: -ms-transform 0.4s ease-in-out;
+    transition: transform 0.4s ease-in-out;
+    cursor:pointer;
+}
+.rotate:hover { 
+    color:#afafaf;
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+    -ms-transform: rotateZ(360deg);
+    -o-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+
+}
+
+/*Futsal Page*/
+.custom-radio {
+    width: 26px; 
+    height: 26px; 
+    margin-right: 10px;
+    cursor: pointer;
+    border: 1px solid #dedede;
+}
+
+input[type="radio"] {
+  -webkit-appearance: checkbox; /* Chrome, Safari, Opera */
+  -moz-appearance: checkbox;    /* Firefox */
+  -ms-appearance: checkbox;     /* not currently supported */
+}
+
+/*Step 3 Checbox Button*/
+.custom-checkbox {
+    width: 18px; 
+    height: 18px; 
+    margin-right: 10px;
+    cursor: pointer;
+    border: 1px solid #dedede;
+}
+.Basketball{margin-bottom:20px;}
+.Basketball .dropdown{ padding-top:3px; margin-left:10px;}
+.hhh{ padding-top:3px; margin-left:10px;}
+
+input[type=checkbox]:checked + label {
+    color: white;
+    background: #86b3c1;
+}
+
+/*============================= BasketBall 36x66 ===========================*/
+
+.set img {
+	background-color:transparent!important;
+}
+

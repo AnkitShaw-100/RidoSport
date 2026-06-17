@@ -1,0 +1,13 @@
+/* Move all @import statements here */
+/* @import './bootstrap.min.css';
+@import './owl.carousel.min.css';
+@import './animated-text.css';
+@import './slick-theme.css';
+@import './slick.css';
+@import './style.css';
+@import './style2.css'; */
+
+/* Then include Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

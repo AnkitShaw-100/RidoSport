@@ -1,0 +1,96 @@
+#mcts1 
+{
+    width:100%;
+    margin: 0 auto;
+    padding:1px 0;
+    height:auto;
+
+
+    /* Do not alter the below settings*/
+    white-space:nowrap;
+    position:relative;
+    font-size:0px;
+}
+
+#mcts1>* {display:none;}
+  
+/*-------- div.item is each thumbnail's wrapper created by the javascript ------*/
+#mcts1 div.item 
+{
+    padding:0px;
+    margin-right:14px; /* this specifies the distance between each thumbnail */
+    
+    
+    position:relative;
+}
+
+#mcts1 p
+{
+    border: 1px solid #d8d8d8;
+	text-align:center;
+	padding:15px 0;
+	font-size:15px;
+	font-family: 'Open Sans', sans-serif; color:#0b0b0b;
+	font-weight:700;
+	color:#878787;
+}
+
+
+/*---------built-in navigation buttons-------*/
+#mcts1 .navPrev, #mcts1 .navNext, #mcts1 .navPlay, #mcts1 .navPause 
+{
+    width:29px; height:29px; position:absolute;  
+    background:url(../images/navbuttons.png); 
+    display:inline-block; z-index:5; cursor:pointer;
+}
+/* #mcts1 .navPrev {background-position:0 -34px;top:50px;left:-30px;} 
+#mcts1 .navPrev:hover {background-position:0 -34px;}
+#mcts1 .navPrevDisabled, #mcts1 .navPrevDisabled:hover {background-position:0 0;cursor:default;}
+
+#mcts1 .navNext {background-position:-33px -34px;top:50px;right:-30px;} 
+#mcts1 .navNext:hover {background-position:-33px -34px;} 
+#mcts1 .navNextDisabled, #mcts1 .navNextDisabled:hover {background-position:-16px 0; cursor:default;} */
+
+#mcts1 .navPause, #mcts1 .navPlay {left:360px;top:130px;}
+#mcts1 .navPause {background-position:0 -66px; display:none} 
+#mcts1 .navPause:hover {background-position:0 -88px;} 
+#mcts1 .navPlay {background-position:-16px -66px;} 
+#mcts1 .navPlay:hover {background-position:-16px -88px;} 
+
+.navPrev, .navPlay, .navPause, .navNext 
+{
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -o-user-select: none;
+   user-select: none;
+}
+       
+/*---------built-in navigation bullets--------*/
+/* Note: the navBullets won't be available when "scrollByEachThumb" was set to false in the Javascript.*/
+#mcts1 .navBullets
+{
+    display:none;
+}
+
+/*--------- class1 that is for the slide with HTML content------------*/
+.class1 
+{
+    width:150px; padding:1px;
+    
+    text-align:left;
+    white-space:normal;  font:bold 12px/14px Arial, Helvetica, sans-serif; z-index:9;
+}
+.class1 img{ width:150px; height:100px; margin:5px 21px;z-index:9; border:2px solid#9ea0a3;}
+
+.class1 a{ color:#000; text-decoration:none;   }
+.class1 a:hover{ color:#000 }
+
+/* --------- Others ------- */
+#mcts1
+{
+	transform: translate3d(0,0,0);
+    -ms-transform:translate3d(0,0,0);
+    -moz-transform:translate3d(0,0,0);
+    -o-transform:translate3d(0,0,0);
+}
