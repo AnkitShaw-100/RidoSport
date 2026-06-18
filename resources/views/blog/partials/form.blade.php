@@ -32,67 +32,89 @@
 
 <div class="admin-blog-field">
     <label for="content">Blog Content</label>
-    <div class="admin-blog-editor-toolbar" aria-label="Blog formatting tools">
-        <button type="button" data-before="<h2>" data-after="</h2>">Heading</button>
-        <button type="button" data-before="<h3>" data-after="</h3>">Subheading</button>
-        <button type="button" data-before="<p>" data-after="</p>">Paragraph</button>
-        <button type="button" data-before="<strong>" data-after="</strong>">Bold</button>
-        <button type="button" data-before="<em>" data-after="</em>">Italic</button>
-        <button type="button" data-before="<ul><li>" data-after="</li></ul>">Bullet List</button>
-        <button type="button" data-before="<ol><li>" data-after="</li></ol>">Number List</button>
-        <button type="button" data-before="<blockquote>" data-after="</blockquote>">Quote</button>
-        <button type="button" data-link="true">Link</button>
-        <button type="button" data-image="true">Image Link</button>
-    </div>
-    <textarea id="content" name="content" rows="12" placeholder="Write the full blog content..." required>{{ old('content', optional($blog)->content) }}</textarea>
-    <p class="admin-blog-editor-help">HTML is supported. Use headings, subheadings, paragraphs, lists, quotes, links, bold, and italic text to format the public blog page.</p>
+    <textarea id="content" class="admin-blog-rich-editor" name="content" rows="18" placeholder="Write the full blog content..." required>{{ old('content', optional($blog)->content) }}</textarea>
+    <p class="admin-blog-editor-help">Use the rich text editor for headings, formatted text, links, tables, code, and images. Images inserted in the editor are uploaded to Cloudinary.</p>
     <x-input-error class="mt-2" :messages="$errors->get('content')" />
 </div>
 
+<script src="https://cdn.tiny.cloud/1/apc4ph2mry4ugfyrjy5d50h1nyxm94l41hx0n7a7l6dkpcfk/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var textarea = document.getElementById('content');
-        var toolbar = document.querySelector('.admin-blog-editor-toolbar');
-
-        if (!textarea || !toolbar) {
+        if (!window.tinymce || !document.getElementById('content')) {
             return;
         }
 
-        toolbar.addEventListener('click', function (event) {
-            var button = event.target.closest('button');
+        tinymce.init({
+            selector: '#content',
+            height: 600,
+            menubar: 'file edit view insert format tools table help',
+            plugins: 'image link media table lists code fullscreen wordcount autosave searchreplace visualblocks codesample',
+            toolbar: 'undo redo | blocks | bold italic underline strikethrough forecolor | alignleft aligncenter alignright alignjustify | bullist numlist blockquote | link image media table codesample hr | searchreplace visualblocks code fullscreen',
+            block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4',
+            branding: false,
+            promotion: false,
+            automatic_uploads: true,
+            paste_data_images: true,
+            images_upload_credentials: true,
+            image_caption: true,
+            image_advtab: true,
+            file_picker_types: 'image',
+            relative_urls: false,
+            remove_script_host: false,
+            convert_urls: false,
+            browser_spellcheck: true,
+            contextmenu: 'link image table',
+            paste_as_text: false,
+            paste_data_images: true,
+            paste_merge_formats: true,
+            paste_webkit_styles: 'all',
+            smart_paste: true,
+            autosave_ask_before_unload: true,
+            autosave_interval: '30s',
+            autosave_retention: '20m',
+            content_style: 'body{font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.75;color:#303030;padding:18px;} h1,h2,h3,h4{color:#050a1e;line-height:1.25;} blockquote{border-left:4px solid #971736;margin:18px 0;padding:12px 18px;background:#f8eef1;color:#233e50;} img{max-width:100%;height:auto;border-radius:8px;} table{border-collapse:collapse;width:100%;} th,td{border:1px solid #d9dde2;padding:10px;}',
+            images_upload_handler: function (blobInfo, progress) {
+                return new Promise(function (resolve, reject) {
+                    var formData = new FormData();
+                    formData.append('file', blobInfo.blob(), blobInfo.filename());
 
-            if (!button) {
-                return;
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '{{ route('blog-data.tinymce-image') }}');
+                    xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+                    xhr.upload.onprogress = function (event) {
+                        if (event.lengthComputable) {
+                            progress(event.loaded / event.total * 100);
+                        }
+                    };
+                    xhr.onload = function () {
+                        if (xhr.status < 200 || xhr.status >= 300) {
+                            reject('Image upload failed. Please try again.');
+                            return;
+                        }
+
+                        var json = JSON.parse(xhr.responseText || '{}');
+
+                        if (!json.location) {
+                            reject('Invalid upload response.');
+                            return;
+                        }
+
+                        resolve(json.location);
+                    };
+                    xhr.onerror = function () {
+                        reject('Image upload failed. Please check your connection.');
+                    };
+                    xhr.send(formData);
+                });
+            },
+            setup: function (editor) {
+                editor.on('change keyup undo redo', function () {
+                    editor.save();
+                });
+                editor.on('init', function () {
+                    editor.save();
+                });
             }
-
-            var start = textarea.selectionStart;
-            var end = textarea.selectionEnd;
-            var selected = textarea.value.slice(start, end) || 'Your text here';
-            var replacement;
-
-            if (button.dataset.link) {
-                var url = window.prompt('Enter link URL', 'https://');
-                if (!url) {
-                    textarea.focus();
-                    return;
-                }
-                replacement = '<a href="' + url.replace(/"/g, '&quot;') + '">' + selected + '</a>';
-            } else if (button.dataset.image) {
-                var imageUrl = window.prompt('Enter image URL', 'https://');
-                if (!imageUrl) {
-                    textarea.focus();
-                    return;
-                }
-                var imageAlt = window.prompt('Enter image alt text', selected === 'Your text here' ? '' : selected) || '';
-                replacement = '<img src="' + imageUrl.replace(/"/g, '&quot;') + '" alt="' + imageAlt.replace(/"/g, '&quot;') + '">';
-            } else {
-                replacement = (button.dataset.before || '') + selected + (button.dataset.after || '');
-            }
-
-            textarea.value = textarea.value.slice(0, start) + replacement + textarea.value.slice(end);
-            textarea.focus();
-            textarea.selectionStart = start;
-            textarea.selectionEnd = start + replacement.length;
         });
     });
 </script>

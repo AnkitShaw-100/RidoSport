@@ -41,15 +41,7 @@
                                 <h1>{{ $blog->title }}</h1>
 
                                 <div class="admin-blog-preview-copy">
-                                    @if ($blog->safe_content !== strip_tags($blog->safe_content))
-                                        {!! $blog->safe_content !!}
-                                    @else
-                                        @foreach (preg_split("/\r\n|\n|\r/", $blog->safe_content) as $paragraph)
-                                            @if (trim($paragraph) !== '')
-                                                <p>{{ $paragraph }}</p>
-                                            @endif
-                                        @endforeach
-                                    @endif
+                                    {!! $blog->formatted_content !!}
                                 </div>
                             </div>
                         </article>

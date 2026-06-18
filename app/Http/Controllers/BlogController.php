@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Services\CloudinaryUploadService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -159,6 +160,28 @@ class BlogController extends Controller
         }
 
         return redirect()->route('blog-data.history')->with('success', 'Blog updated successfully.');
+    }
+
+    public function uploadTinyMceImage(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'file' => ['required', 'file', 'extensions:jpg,jpeg,png,webp,gif', 'max:10240'],
+        ]);
+
+        try {
+            $image = $this->cloudinaryUploadService->uploadBlogBanner(
+                $validated['file'],
+                'blog-content-image'
+            );
+        } catch (RuntimeException $exception) {
+            return response()->json([
+                'message' => $exception->getMessage(),
+            ], 422);
+        }
+
+        return response()->json([
+            'location' => $image['url'],
+        ]);
     }
 
     /**

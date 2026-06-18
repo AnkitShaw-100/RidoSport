@@ -255,6 +255,7 @@ Route::middleware(['admin'])->group(function () {
         Route::get('/', [BlogController::class, 'index'])->name('index');
         Route::get('/create', [BlogController::class, 'create'])->name('create');
         Route::get('/history', [BlogController::class, 'history'])->name('history');
+        Route::post('/tinymce-image', [BlogController::class, 'uploadTinyMceImage'])->name('tinymce-image');
         Route::post('/create', [BlogController::class, 'store'])->name('store');
         Route::get('/view/{id}', [BlogController::class, 'show'])->name('show');
         Route::get('/edit/{id}', [BlogController::class, 'edit'])->name('edit');

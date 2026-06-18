@@ -19,6 +19,7 @@
         "vite": "^5.0"
     },
     "dependencies": {
-        "lightgallery": "^2.7.2"
+        "lightgallery": "^2.7.2",
+        "tinymce": "^8.6.0"
     }
 }

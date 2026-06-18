@@ -190,6 +190,34 @@
         margin: 8px 0 0;
     }
 
+    .admin-blog-field .tox-tinymce {
+        border: 1px solid #d9dde2;
+        border-radius: 8px;
+        box-shadow: 0 10px 24px rgba(5, 10, 30, .05);
+        overflow: hidden;
+    }
+
+    .admin-blog-field .tox .tox-toolbar,
+    .admin-blog-field .tox .tox-toolbar__overflow,
+    .admin-blog-field .tox .tox-toolbar__primary {
+        background: #f8f8f8;
+    }
+
+    .admin-blog-field .tox .tox-edit-area__iframe {
+        background: #fff;
+    }
+
+    .admin-blog-field .tox .tox-statusbar {
+        background: #f8f8f8;
+        border-top: 1px solid #e5e7e9;
+    }
+
+    .admin-blog-field .tox .tox-tbtn:hover,
+    .admin-blog-field .tox .tox-tbtn--enabled {
+        background: rgba(151, 23, 54, .10);
+        color: var(--theme-color1, #971736);
+    }
+
     .admin-blog-field input::placeholder,
     .admin-blog-field textarea::placeholder {
         color: #9e9e9e;
