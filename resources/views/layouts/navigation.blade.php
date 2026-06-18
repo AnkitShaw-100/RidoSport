@@ -77,6 +77,9 @@
                             <x-dropdown-link :href="route('video.index')" :active="request()->routeIs('video.index')" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                                 {{ __('Video Gallery') }}
                             </x-dropdown-link>
+                            <x-dropdown-link :href="route('blog-data.index')" :active="request()->routeIs('blog-data.*')" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                {{ __('Blogs') }}
+                            </x-dropdown-link>
                             
                         </div>
                     </div>

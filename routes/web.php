@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\CacheController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -48,7 +49,8 @@ Route::group([], function () {
         // Blog Page Routes
         Route::prefix('blog')->group(function () {
             Route::get('/', [FrontEndController::class, 'blog'])->name('blog');
-            Route::get('/details', [FrontEndController::class, 'blogDetails'])->name('blog-details');
+            Route::get('/add', [BlogController::class, 'add'])->name('blog.add');
+            Route::get('/{blog:slug}', [FrontEndController::class, 'blogDetails'])->name('blog-details');
         });
     });
 
@@ -105,15 +107,15 @@ Route::group([], function () {
 
 });
 
-// Dashboard Route with auth and verified middleware
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware('guest')->group(function () {
+    Route::get('/admin/login', [AdminAuthController::class, 'create'])->name('admin.login');
+    Route::post('/admin/login', [AdminAuthController::class, 'store'])->name('admin.login.store');
+});
 
-// Group routes for authenticated and verified users
-Route::middleware(['auth', 'verified'])->group(function () {
+// Group routes for authenticated admin users
+Route::middleware(['admin'])->group(function () {
 	
-	    Route::get('/dashboard', [ContactUsFormController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [ContactUsFormController::class, 'index'])->name('dashboard');
     Route::post('/contact/destroy/{id}', [ContactUsFormController::class, 'destroy'])->name('contact.destroy');
     Route::post('/court/destroy/{id}', [DownloadCourtController::class, 'destroy'])->name('court-query.destroy');
     
@@ -249,14 +251,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/{id}', [ProductController::class, 'destroy'])->name('destroy');        
     });
 
-    // Route::prefix('admin/blog')->name('blog-data.')->group(function () {
-    //     Route::get('/', [BlogController::class, 'index'])->name('index');
-    //     Route::get('/create', [BlogController::class, 'create'])->name('create');
-    //     Route::post('/create', [BlogController::class, 'store'])->name('store');
-    //     Route::get('/edit/{id}', [BlogController::class, 'edit'])->name('edit');
-    //     Route::post('/update/{id}', [BlogController::class, 'update'])->name('update');
-    //     Route::delete('/{id}', [BlogController::class, 'destroy'])->name('destroy');        
-    // });
+    Route::prefix('admin/blog')->name('blog-data.')->group(function () {
+        Route::get('/', [BlogController::class, 'index'])->name('index');
+        Route::get('/create', [BlogController::class, 'create'])->name('create');
+        Route::get('/history', [BlogController::class, 'history'])->name('history');
+        Route::post('/create', [BlogController::class, 'store'])->name('store');
+        Route::get('/view/{id}', [BlogController::class, 'show'])->name('show');
+        Route::get('/edit/{id}', [BlogController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [BlogController::class, 'update'])->name('update');
+        Route::delete('/{id}', [BlogController::class, 'destroy'])->name('destroy');
+    });
 
 });
 

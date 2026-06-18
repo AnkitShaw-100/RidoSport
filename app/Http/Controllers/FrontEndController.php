@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Gallery;
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class FrontEndController extends Controller
 {
     // Method for home page
     public function home()
     {
-        return view('frontend.home.index');
+        $blogs = Schema::hasTable('blogs')
+            ? $this->publishedBlogsQuery()->latest()->limit(3)->get()
+            : collect();
+
+        return view('frontend.home.index', compact('blogs'));
     }
 
     // Method for About Us page
@@ -27,15 +33,37 @@ class FrontEndController extends Controller
     {
         $pageTitle = 'Blogs';
         $pageRoute = route('blog');
-        return view('frontend.blogs.index',compact('pageTitle', 'pageRoute'));
+        $blogs = Schema::hasTable('blogs')
+            ? $this->publishedBlogsQuery()->latest()->paginate(9)
+            : collect();
+
+        return view('frontend.blogs.index',compact('pageTitle', 'pageRoute', 'blogs'));
     }
 
     // Method for Blog Details page
-    public function blogDetails()
+    public function blogDetails(Blog $blog)
     {   
+        if (Schema::hasColumn('blogs', 'status') && $blog->status !== 'published') {
+            abort(404);
+        }
+
         $pageTitle = 'Blog Details';
-        $pageRoute = route('blog-details');
-        return view('frontend.blogs.blog_details',compact('pageTitle', 'pageRoute'));
+        $pageRoute = route('blog-details', $blog);
+        $recentBlogs = $this->publishedBlogsQuery()
+            ->latest()
+            ->where('id', '!=', $blog->id)
+            ->limit(3)
+            ->get();
+
+        return view('frontend.blogs.blog_details',compact('pageTitle', 'pageRoute', 'blog', 'recentBlogs'));
+    }
+
+    private function publishedBlogsQuery()
+    {
+        return Blog::query()->when(
+            Schema::hasColumn('blogs', 'status'),
+            fn ($query) => $query->where('status', 'published')
+        );
     }
 
     // Method for Gallery page

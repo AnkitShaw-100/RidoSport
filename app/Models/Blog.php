@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Blog extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'slug',
+        'content',
+        'banner_image_url',
+        'banner_public_id',
+        'status',
+    ];
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }

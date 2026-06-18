@@ -21,6 +21,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role', 
+        'admin',
     ];
 
     /**
@@ -40,6 +41,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'admin' => 'boolean',
     ];
 
     /**
@@ -49,6 +51,6 @@ class User extends Authenticatable
      */
     public function isAdmin()
     {
-        return $this->role === 'admin'; // Adjust this according to your role logic
+        return $this->role === 'admin' || (bool) $this->admin;
     }
 }

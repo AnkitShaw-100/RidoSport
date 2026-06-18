@@ -192,7 +192,7 @@
                                 <li class="dropdown">
                                     <a href="#">More</a>
                                     <ul>
-                                        {{-- <li><a href="{{route('blog')}}">Blogs</a></li> --}}
+                                        <li><a href="{{route('blog')}}">Blogs</a></li>
                                         <li><a href="{{route('image-gallery')}}">Image Gallery</a></li>
                                         <li><a href="{{route('video-gallery')}}">Video Gallery</a></li>
 
