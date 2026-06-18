@@ -194,6 +194,7 @@
         border: 1px solid #e5e7e9;
         border-radius: 8px;
         overflow: hidden;
+        table-layout: fixed;
     }
 
     .admin-blog-table th {
@@ -211,12 +212,25 @@
         color: #303030;
         padding: 13px;
         vertical-align: middle;
+        word-break: break-word;
     }
 
     .admin-blog-title-cell {
         color: #050a1e !important;
-        font-weight: 800;
-        min-width: 180px;
+        font-weight: 500;
+        width: 18%;
+    }
+
+    .admin-blog-preview-cell {
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        color: #646464 !important;
+        display: -webkit-box;
+        line-height: 1.55;
+        max-width: 280px;
+        overflow: hidden;
+        overflow-wrap: anywhere;
+        white-space: normal;
     }
 
     .admin-blog-thumb {
@@ -248,7 +262,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
-        min-width: 190px;
+        min-width: 150px;
     }
 
     .admin-action-link {

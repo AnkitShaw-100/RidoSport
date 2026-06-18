@@ -49,7 +49,7 @@ background-size: cover;">
                                 <span><i class="far fa-calendar-alt"></i> {{ $blog->created_at->format('M d, Y') }}</span>
                             </div>
                             <h3><a href="{{ route('blog-details', $blog) }}">{{ $blog->title }}</a></h3>
-                            <p>{{ Str::limit(strip_tags($blog->content), 125) }}</p>
+                            <p>{{ Str::limit(preg_replace('/\s+/', ' ', trim(strip_tags($blog->content))), 95, '...') }}</p>
                             <a class="rido-blog-readmore" href="{{ route('blog-details', $blog) }}">Read More <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </article>
@@ -94,14 +94,16 @@ background-size: cover;">
     }
 
     .rido-blog-grid {
-        row-gap: 28px;
+        row-gap: 30px;
     }
 
     .rido-blog-card {
         background: #fff;
         border: 1px solid rgba(5, 10, 30, .08);
         border-radius: 8px;
-        box-shadow: 0 14px 34px rgba(5, 10, 30, .08);
+        box-shadow: 0 12px 30px rgba(5, 10, 30, .07);
+        display: flex;
+        flex-direction: column;
         height: 100%;
         overflow: hidden;
         transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
@@ -109,15 +111,27 @@ background-size: cover;">
 
     .rido-blog-card:hover {
         border-color: rgba(151, 23, 54, .42);
-        box-shadow: 0 22px 44px rgba(5, 10, 30, .14);
-        transform: translateY(-5px);
+        box-shadow: 0 22px 44px rgba(5, 10, 30, .13);
+        transform: translateY(-4px);
     }
 
     .rido-blog-image {
         background: #f4f4f4;
         display: block;
-        height: 238px;
+        height: 230px;
         overflow: hidden;
+        position: relative;
+    }
+
+    .rido-blog-image::after {
+        background: linear-gradient(180deg, rgba(5, 10, 30, 0) 45%, rgba(5, 10, 30, .28) 100%);
+        bottom: 0;
+        content: "";
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
     }
 
     .rido-blog-image img {
@@ -133,7 +147,10 @@ background-size: cover;">
     }
 
     .rido-blog-body {
-        padding: 24px 24px 26px;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        padding: 22px 22px 24px;
     }
 
     .rido-blog-meta {
@@ -141,9 +158,10 @@ background-size: cover;">
         color: #7a7a7a;
         display: flex;
         flex-wrap: wrap;
-        font-size: 13px;
-        gap: 12px;
-        margin-bottom: 12px;
+        font-size: 12px;
+        gap: 10px;
+        margin-bottom: 11px;
+        text-transform: uppercase;
     }
 
     .rido-blog-meta i {
@@ -152,14 +170,20 @@ background-size: cover;">
     }
 
     .rido-blog-body h3 {
-        font-size: 22px;
-        font-weight: 800;
-        line-height: 1.28;
+        font-size: 21px;
+        font-weight: 500;
+        line-height: 1.3;
         margin: 0 0 12px;
     }
 
     .rido-blog-body h3 a {
         color: #050a1e;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        min-height: 54px;
+        overflow: hidden;
+        overflow-wrap: anywhere;
         text-decoration: none;
     }
 
@@ -168,10 +192,16 @@ background-size: cover;">
     }
 
     .rido-blog-body p {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
         color: #646464;
         font-size: 15px;
         line-height: 1.7;
-        margin-bottom: 18px;
+        margin-bottom: 20px;
+        min-height: 76px;
+        overflow: hidden;
+        overflow-wrap: anywhere;
     }
 
     .rido-blog-readmore {
@@ -184,9 +214,11 @@ background-size: cover;">
         font-weight: 800;
         gap: 8px;
         letter-spacing: .03em;
+        margin-top: auto;
         padding: 11px 15px;
         text-decoration: none;
         text-transform: uppercase;
+        width: fit-content;
     }
 
     .rido-blog-readmore:hover {

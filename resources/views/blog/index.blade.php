@@ -39,7 +39,9 @@
                                     <td>
                                         <img src="{{ $blog->banner_image_url }}" alt="{{ $blog->title }}" class="admin-blog-thumb">
                                     </td>
-                                    <td>{{ Str::limit(strip_tags($blog->content), 120) }}</td>
+                                    <td class="admin-blog-preview-cell">
+                                        {{ Str::limit(preg_replace('/\s+/', ' ', trim(strip_tags($blog->content))), 90, '...') }}
+                                    </td>
                                     <td>{{ $blog->created_at?->format('d M Y') }}</td>
                                     <td>{{ $blog->updated_at?->format('d M Y') }}</td>
                                     <td>

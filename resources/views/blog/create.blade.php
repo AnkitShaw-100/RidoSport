@@ -16,7 +16,6 @@
                         <h3>Create Blog</h3>
                         <p>Add a banner, title, status, and long-form content for the public website.</p>
                     </div>
-                    <a href="{{ route('blog-data.history') }}" class="admin-blog-button">Manage Blogs</a>
                 </div>
 
                 <form method="POST" action="{{ route('blog-data.store') }}" enctype="multipart/form-data" class="admin-blog-form">

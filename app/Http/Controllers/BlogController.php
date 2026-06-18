@@ -29,7 +29,7 @@ class BlogController extends Controller
      */
     public function history()
     {
-        $blogs = Blog::latest()->paginate(10);
+        $blogs = Blog::latest()->paginate(6);
 
         return view('blog.index', compact('blogs'));
     }
