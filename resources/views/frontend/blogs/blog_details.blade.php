@@ -79,7 +79,7 @@
     }
 
     .rido-blog-detail-hero::before {
-        background: rgba(5, 10, 30, .45);
+        background: linear-gradient(180deg, rgba(5, 10, 30, .24), rgba(5, 10, 30, .58));
         bottom: 0;
         content: "";
         left: 0;
@@ -95,25 +95,32 @@
 
     .rido-blog-detail-section {
         background: #f4f4f4;
-        padding: 84px 0;
+        padding: 0 0 84px;
     }
 
     .rido-blog-detail-section-no-hero {
-        padding-top: 120px;
+        padding-top: 72px;
     }
 
     .rido-blog-detail-container {
-        max-width: 1360px;
-        width: 94%;
+        max-width: 1040px;
+        position: relative;
+        width: 92%;
+        z-index: 2;
     }
 
     .rido-blog-detail-article {
         background: #fff;
         border: 1px solid rgba(5, 10, 30, .08);
         border-radius: 8px;
-        box-shadow: 0 16px 38px rgba(5, 10, 30, .08);
-        padding: 44px;
+        box-shadow: 0 24px 60px rgba(5, 10, 30, .12);
+        margin-top: -64px;
+        padding: 48px 58px 54px;
         width: 100%;
+    }
+
+    .rido-blog-detail-section-no-hero .rido-blog-detail-article {
+        margin-top: 0;
     }
 
     .rido-blog-detail-breadcrumb {
@@ -150,8 +157,8 @@
         display: flex;
         flex-wrap: wrap;
         font-size: 13px;
-        gap: 16px;
-        margin-bottom: 16px;
+        gap: 14px;
+        margin-bottom: 18px;
         text-transform: uppercase;
     }
 
@@ -162,18 +169,29 @@
 
     .rido-blog-detail-article h2 {
         color: #050a1e;
-        font-size: 38px;
+        font-size: 42px;
         font-weight: 500;
-        line-height: 1.2;
-        margin: 0 0 24px;
+        letter-spacing: 0;
+        line-height: 1.16;
+        margin: 0 0 28px;
         overflow-wrap: anywhere;
     }
 
+    .rido-blog-detail-article > h2::after {
+        background: var(--theme-color1, #971736);
+        border-radius: 999px;
+        content: "";
+        display: block;
+        height: 3px;
+        margin-top: 22px;
+        width: 70px;
+    }
+
     .rido-blog-detail-copy p {
-        color: #444;
-        font-size: 17px;
-        line-height: 1.9;
-        margin-bottom: 18px;
+        color: #3f4650;
+        font-size: 18px;
+        line-height: 1.88;
+        margin-bottom: 20px;
         overflow-wrap: anywhere;
     }
 
@@ -186,7 +204,7 @@
         color: #050a1e;
         font-weight: 600;
         line-height: 1.25;
-        margin: 28px 0 14px;
+        margin: 34px 0 16px;
         overflow-wrap: anywhere;
     }
 
@@ -226,8 +244,8 @@
         font-size: 18px;
         font-style: italic;
         line-height: 1.75;
-        margin: 26px 0;
-        padding: 18px 22px;
+        margin: 30px 0;
+        padding: 22px 24px;
     }
 
     .rido-blog-detail-copy a {
@@ -247,6 +265,66 @@
         width: auto;
     }
 
+    .rido-blog-detail-copy figure {
+        margin: 30px 0;
+    }
+
+    .rido-blog-detail-copy figcaption {
+        color: #7a7a7a;
+        font-size: 14px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .rido-blog-detail-copy table {
+        border-collapse: collapse;
+        margin: 30px 0;
+        width: 100%;
+    }
+
+    .rido-blog-detail-copy th,
+    .rido-blog-detail-copy td {
+        border: 1px solid #d9dde2;
+        color: #3f4650;
+        padding: 12px 14px;
+        vertical-align: top;
+    }
+
+    .rido-blog-detail-copy th {
+        background: #f4f4f4;
+        color: #050a1e;
+        font-weight: 700;
+    }
+
+    .rido-blog-detail-copy pre {
+        background: #050a1e;
+        border-radius: 8px;
+        color: #fff;
+        margin: 28px 0;
+        overflow-x: auto;
+        padding: 18px 20px;
+    }
+
+    .rido-blog-detail-copy code {
+        font-family: Consolas, Monaco, monospace;
+    }
+
+    .rido-blog-detail-copy hr {
+        border: 0;
+        border-top: 1px solid #e5e7e9;
+        margin: 34px 0;
+    }
+
+    .rido-blog-detail-copy iframe {
+        aspect-ratio: 16 / 9;
+        border: 0;
+        border-radius: 8px;
+        display: block;
+        height: auto;
+        margin: 30px 0;
+        width: 100%;
+    }
+
     .rido-blog-detail-copy strong,
     .rido-blog-detail-copy b {
         color: #050a1e;
@@ -254,7 +332,7 @@
     }
 
     .rido-related-blogs {
-        margin-top: 42px;
+        margin-top: 48px;
     }
 
     .rido-related-heading {
@@ -325,31 +403,33 @@
 
     @media (max-width: 767px) {
         .rido-blog-detail-hero {
-            min-height: 310px;
+            min-height: 320px;
         }
 
         .rido-blog-detail-section {
-            padding: 56px 0;
+            padding: 0 0 56px;
         }
 
         .rido-blog-detail-section-no-hero {
-            padding-top: 82px;
+            padding-top: 42px;
         }
 
         .rido-blog-detail-container {
-            width: 100%;
+            width: calc(100% - 24px);
         }
 
         .rido-blog-detail-article {
-            padding: 26px 20px;
+            margin-top: -34px;
+            padding: 26px 20px 32px;
         }
 
         .rido-blog-detail-article h2 {
-            font-size: 28px;
+            font-size: 29px;
         }
 
         .rido-blog-detail-copy p {
             font-size: 16px;
+            line-height: 1.75;
         }
 
         .rido-related-card {
