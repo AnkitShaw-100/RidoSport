@@ -21,6 +21,15 @@
 
                 <div class="overflow-x-auto mt-6">
                     <table class="table-auto w-full admin-blog-table">
+                        <colgroup>
+                            <col class="admin-col-title">
+                            <col class="admin-col-banner">
+                            <col class="admin-col-preview">
+                            <col class="admin-col-date">
+                            <col class="admin-col-date">
+                            <col class="admin-col-status">
+                            <col class="admin-col-actions">
+                        </colgroup>
                         <thead>
                             <tr>
                                 <th>Title</th>
@@ -40,7 +49,9 @@
                                         <img src="{{ $blog->banner_image_url }}" alt="{{ $blog->title }}" class="admin-blog-thumb">
                                     </td>
                                     <td class="admin-blog-preview-cell">
-                                        {{ Str::limit(preg_replace('/\s+/', ' ', trim(strip_tags($blog->content))), 90, '...') }}
+                                        <span>
+                                            {{ Str::limit(preg_replace('/\s+/', ' ', trim(strip_tags($blog->content))), 65, '...') }}
+                                        </span>
                                     </td>
                                     <td>{{ $blog->created_at?->format('d M Y') }}</td>
                                     <td>{{ $blog->updated_at?->format('d M Y') }}</td>

@@ -6,8 +6,8 @@
     </x-slot>
 
     <div class="py-12 admin-blog-page">
-        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
-            <div class="admin-blog-panel">
+        <div class="admin-blog-create-wrap mx-auto sm:px-6 lg:px-8">
+            <div class="admin-blog-panel admin-blog-create-panel">
                 @include('blog.partials.alerts')
 
                 <div class="admin-blog-hero">

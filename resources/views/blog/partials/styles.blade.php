@@ -13,6 +13,17 @@
         padding: 24px;
     }
 
+    .admin-blog-create-wrap {
+        max-width: 980px;
+        padding-left: 18px;
+        padding-right: 18px;
+        width: 100%;
+    }
+
+    .admin-blog-create-panel {
+        padding: 22px;
+    }
+
     .admin-alert {
         border-radius: 8px;
         display: flex;
@@ -41,12 +52,12 @@
         display: flex;
         justify-content: space-between;
         gap: 20px;
-        padding: 26px;
+        padding: 22px;
     }
 
     .admin-blog-hero h3 {
         color: #fff;
-        font-size: 28px;
+        font-size: 24px;
         font-weight: 800;
         line-height: 1.15;
         margin: 0 0 6px;
@@ -92,8 +103,8 @@
 
     .admin-blog-form {
         display: grid;
-        gap: 22px;
-        margin-top: 26px;
+        gap: 18px;
+        margin-top: 22px;
     }
 
     .admin-blog-grid {
@@ -129,7 +140,7 @@
     }
 
     .admin-blog-field textarea {
-        min-height: 260px;
+        min-height: 220px;
         resize: vertical;
     }
 
@@ -197,6 +208,30 @@
         table-layout: fixed;
     }
 
+    .admin-col-title {
+        width: 17%;
+    }
+
+    .admin-col-banner {
+        width: 14%;
+    }
+
+    .admin-col-preview {
+        width: 23%;
+    }
+
+    .admin-col-date {
+        width: 13%;
+    }
+
+    .admin-col-status {
+        width: 11%;
+    }
+
+    .admin-col-actions {
+        width: 14%;
+    }
+
     .admin-blog-table th {
         background: #050a1e;
         color: #fff;
@@ -212,22 +247,24 @@
         color: #303030;
         padding: 13px;
         vertical-align: middle;
-        word-break: break-word;
+        word-break: normal;
     }
 
     .admin-blog-title-cell {
         color: #050a1e !important;
         font-weight: 500;
-        width: 18%;
+        overflow-wrap: anywhere;
     }
 
     .admin-blog-preview-cell {
+        color: #646464 !important;
+        line-height: 1.45;
+    }
+
+    .admin-blog-preview-cell span {
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
-        color: #646464 !important;
         display: -webkit-box;
-        line-height: 1.55;
-        max-width: 280px;
         overflow: hidden;
         overflow-wrap: anywhere;
         white-space: normal;
@@ -262,7 +299,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
-        min-width: 150px;
+        min-width: 0;
     }
 
     .admin-action-link {
@@ -324,6 +361,11 @@
     @media (max-width: 768px) {
         .admin-blog-panel {
             padding: 16px;
+        }
+
+        .admin-blog-create-wrap {
+            padding-left: 12px;
+            padding-right: 12px;
         }
 
         .admin-blog-hero {
