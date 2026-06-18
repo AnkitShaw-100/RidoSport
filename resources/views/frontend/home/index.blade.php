@@ -8,7 +8,7 @@
     @include('frontend.home.service_content')
 
     @include('frontend.products.index')
-    @include('frontend.blogs.blog_content')
+    @include('frontend.blogs.blog_content', ['isHomeBlogSection' => true])
 
     @include('frontend.home.why_us_content')
 

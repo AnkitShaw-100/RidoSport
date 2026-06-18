@@ -18,7 +18,11 @@
                             </div>
                             <div class="project-content">
                                 <h3 class="project-title"><a href="#">{{ $productCard->product_card_title }}</a></h3>
-                                <p class="project-text">{{ Str::limit($productCard->product_card_description, 300) }}</p>
+                                @php
+                                    $productDescription = trim(strip_tags($productCard->product_card_description));
+                                    $productDescription = strlen($productDescription) > 300 ? substr($productDescription, 0, 300) . '...' : $productDescription;
+                                @endphp
+                                <p class="project-text">{{ $productDescription }}</p>
                             </div>
                         </div>
                     </div>

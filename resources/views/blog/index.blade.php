@@ -49,8 +49,12 @@
                                         <img src="{{ $blog->banner_image_url }}" alt="{{ $blog->title }}" class="admin-blog-thumb">
                                     </td>
                                     <td class="admin-blog-preview-cell">
+                                        @php
+                                            $adminPreview = preg_replace('/\s+/', ' ', trim(strip_tags($blog->safe_content)));
+                                            $adminPreview = strlen($adminPreview) > 65 ? substr($adminPreview, 0, 65) . '...' : $adminPreview;
+                                        @endphp
                                         <span>
-                                            {{ Str::limit(preg_replace('/\s+/', ' ', trim(strip_tags($blog->content))), 65, '...') }}
+                                            {{ $adminPreview }}
                                         </span>
                                     </td>
                                     <td>{{ $blog->created_at?->format('d M Y') }}</td>

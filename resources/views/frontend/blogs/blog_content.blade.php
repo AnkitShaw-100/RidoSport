@@ -1,4 +1,4 @@
-<div id="all-blogs" class="blog-area style-grid rido-blog-section" style="
+<div id="all-blogs" class="blog-area style-grid rido-blog-section {{ !empty($isHomeBlogSection) ? 'rido-blog-section-home' : '' }}" style="
 background: url('{{ asset('images/bg/about3-bg.png') }}') !important;
 background-repeat: no-repeat;
 background-position: center center;
@@ -7,7 +7,7 @@ background-size: cover;">
         $blogs = $blogs ?? collect();
     @endphp
 
-    <div class="container">
+    <div class="container rido-blog-container">
         <div class="row align-items-center rido-blog-heading">
             <div class="col-lg-6">
                 <div class="section-title text-left">
@@ -16,40 +16,37 @@ background-size: cover;">
             </div>
             <div class="col-lg-6">
                 <div class="project-right rido-blog-heading-actions">
-                    <div class="rido-btn">
-                        <a href="{{ route('blog') }}#all-blogs">View All Posts
-                            <div class="rido-hover-btn hover-bx"></div>
-                            <div class="rido-hover-btn hover-bx2"></div>
-                            <div class="rido-hover-btn hover-bx3"></div>
-                            <div class="rido-hover-btn hover-bx4"></div>
-                        </a>
-                    </div>
-                    <div class="rido-btn">
-                        <a href="{{ route('blog.add') }}">Add More Blog
-                            <div class="rido-hover-btn hover-bx"></div>
-                            <div class="rido-hover-btn hover-bx2"></div>
-                            <div class="rido-hover-btn hover-bx3"></div>
-                            <div class="rido-hover-btn hover-bx4"></div>
-                        </a>
-                    </div>
+                    <a class="rido-blog-top-button" href="{{ route('blog') }}#all-blogs">View All Posts</a>
+                    <a class="rido-blog-top-button" href="{{ route('blog.add') }}">Add More Blog</a>
                 </div>
             </div>
         </div>
 
         <div class="row rido-blog-grid">
             @forelse ($blogs as $blog)
+                @php
+                    $hasBanner = ! empty($blog->banner_public_id)
+                        || (! empty($blog->banner_image_url) && ! str_contains($blog->banner_image_url, 'images/bg/blog-box.png'));
+                @endphp
                 <div class="col-lg-4 col-md-6">
-                    <article class="rido-blog-card">
-                        <a href="{{ route('blog-details', $blog) }}" class="rido-blog-image">
-                            <img src="{{ $blog->banner_image_url }}" alt="{{ $blog->title }}">
-                        </a>
+                    <article class="rido-blog-card {{ $hasBanner ? '' : 'rido-blog-card-no-image' }}">
+                        @if ($hasBanner)
+                            <a href="{{ route('blog-details', $blog) }}" class="rido-blog-image">
+                                <img src="{{ $blog->banner_image_url }}" alt="{{ $blog->title }}">
+                            </a>
+                        @endif
                         <div class="rido-blog-body">
                             <div class="rido-blog-meta">
                                 <span><i class="far fa-user"></i> RidoSports</span>
                                 <span><i class="far fa-calendar-alt"></i> {{ $blog->created_at->format('M d, Y') }}</span>
                             </div>
                             <h3><a href="{{ route('blog-details', $blog) }}">{{ $blog->title }}</a></h3>
-                            <p>{{ Str::limit(preg_replace('/\s+/', ' ', trim(strip_tags($blog->content))), 95, '...') }}</p>
+                            @php
+                                $preview = preg_replace('/\s+/', ' ', trim(strip_tags($blog->safe_content)));
+                                $previewLimit = $hasBanner ? 95 : 230;
+                                $preview = strlen($preview) > $previewLimit ? substr($preview, 0, $previewLimit) . '...' : $preview;
+                            @endphp
+                            <p>{{ $preview }}</p>
                             <a class="rido-blog-readmore" href="{{ route('blog-details', $blog) }}">Read More <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </article>
@@ -82,6 +79,11 @@ background-size: cover;">
         padding-top: 90px;
     }
 
+    .rido-blog-container {
+        max-width: 75vw;
+        width: 75vw;
+    }
+
     .rido-blog-heading {
         margin-bottom: 28px;
     }
@@ -91,6 +93,26 @@ background-size: cover;">
         flex-wrap: wrap;
         gap: 14px;
         justify-content: flex-end;
+    }
+
+    .rido-blog-top-button {
+        background: var(--theme-color1, #971736);
+        border-radius: 999px;
+        color: #fff;
+        display: inline-flex;
+        font-size: 13px;
+        font-weight: 800;
+        line-height: 1;
+        padding: 15px 24px;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    .rido-blog-top-button:hover,
+    .rido-blog-top-button:focus {
+        background: var(--theme-color1, #971736);
+        color: #fff;
+        text-decoration: none;
     }
 
     .rido-blog-grid {
@@ -118,7 +140,7 @@ background-size: cover;">
     .rido-blog-image {
         background: #f4f4f4;
         display: block;
-        height: 230px;
+        height: 225px;
         overflow: hidden;
         position: relative;
     }
@@ -151,6 +173,21 @@ background-size: cover;">
         flex: 1;
         flex-direction: column;
         padding: 22px 22px 24px;
+    }
+
+    .rido-blog-card-no-image .rido-blog-body {
+        justify-content: center;
+        min-height: 420px;
+        padding-top: 30px;
+    }
+
+    .rido-blog-card-no-image .rido-blog-body p {
+        -webkit-line-clamp: 8;
+        min-height: auto;
+    }
+
+    .rido-blog-card-no-image .rido-blog-readmore {
+        margin-top: 24px;
     }
 
     .rido-blog-meta {
@@ -199,7 +236,7 @@ background-size: cover;">
         font-size: 15px;
         line-height: 1.7;
         margin-bottom: 20px;
-        min-height: 76px;
+        min-height: 72px;
         overflow: hidden;
         overflow-wrap: anywhere;
     }
@@ -240,6 +277,11 @@ background-size: cover;">
     }
 
     @media (max-width: 767px) {
+        .rido-blog-container {
+            max-width: 100%;
+            width: 100%;
+        }
+
         .rido-blog-section {
             padding-bottom: 62px;
             padding-top: 62px;
@@ -255,6 +297,31 @@ background-size: cover;">
 
         .rido-blog-heading-actions {
             justify-content: flex-start;
+        }
+
+        .rido-blog-section-home .rido-blog-grid {
+            flex-wrap: nowrap;
+            margin-left: -15px;
+            margin-right: -15px;
+            overflow-x: auto;
+            padding: 0 15px 14px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .rido-blog-section-home .rido-blog-grid > [class*="col-"] {
+            flex: 0 0 84%;
+            max-width: 84%;
+            scroll-snap-align: start;
+        }
+
+        .rido-blog-section-home .rido-blog-grid::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .rido-blog-section-home .rido-blog-grid::-webkit-scrollbar-thumb {
+            background: rgba(151, 23, 54, .35);
+            border-radius: 999px;
         }
     }
 </style>

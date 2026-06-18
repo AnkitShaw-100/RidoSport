@@ -59,23 +59,30 @@ class BlogController extends Controller
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string'],
-            'banner_image' => ['required', 'file', 'extensions:jpg,jpeg,png,webp', 'max:10240'],
+            'banner_image' => ['nullable', 'file', 'extensions:jpg,jpeg,png,webp', 'max:10240'],
             'status' => ['required', 'in:published,draft'],
         ]);
 
-        try {
-            $banner = $this->cloudinaryUploadService->uploadBlogBanner(
-                $request->file('banner_image'),
-                $validated['title']
-            );
-        } catch (RuntimeException $exception) {
-            return back()->withInput()->with('failure', $exception->getMessage());
+        $banner = [
+            'url' => asset('images/bg/blog-box.png'),
+            'public_id' => null,
+        ];
+
+        if ($request->hasFile('banner_image')) {
+            try {
+                $banner = $this->cloudinaryUploadService->uploadBlogBanner(
+                    $request->file('banner_image'),
+                    $validated['title']
+                );
+            } catch (RuntimeException $exception) {
+                return back()->withInput()->with('failure', $exception->getMessage());
+            }
         }
 
         Blog::create([
             'title' => $validated['title'],
             'slug' => $this->uniqueSlug($validated['title']),
-            'content' => $validated['content'],
+            'content' => Blog::sanitizeHtmlContent($validated['content']),
             'banner_image_url' => $banner['url'],
             'banner_public_id' => $banner['public_id'],
             'status' => $validated['status'],
@@ -133,7 +140,7 @@ class BlogController extends Controller
 
         $oldBannerPublicId = $blog->banner_public_id;
         $blog->title = $validated['title'];
-        $blog->content = $validated['content'];
+        $blog->content = Blog::sanitizeHtmlContent($validated['content']);
         $blog->status = $validated['status'];
 
         if ($blog->isDirty('title')) {
@@ -185,4 +192,5 @@ class BlogController extends Controller
 
         return $slug;
     }
+
 }
