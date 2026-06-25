@@ -36,6 +36,7 @@
                                 <th class="p-2 border-r border-black">Certified By</th>
                                 <th class="p-2 border-r border-black">Certified For</th>
                                 <th class="p-2 border-r border-black">Product Name</th>
+                                <th class="p-2 border-r border-black">PDF</th>
                                 <th class="p-2 border-r border-black">Actions</th>
                             </tr>
                         </thead>
@@ -49,6 +50,14 @@
                                     <td class="p-2 border-r border-black">{{ $certificate->certified_by_company_name }}</td>
                                     <td class="p-2 border-r border-black">{{ $certificate->certified_for }}</td>
                                     <td class="p-2 border-r border-black">{{ $certificate->product_name }}</td>
+                                    <td class="p-2 border-r border-black">
+                                        <a href="{{ route('certificate.download', $certificate) }}" class="btn btn-success">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </a>
+                                        <span class="block mt-1 text-xs text-gray-500">
+                                            {{ $certificate->certificate_pdf ? 'Uploaded PDF' : 'Generated PDF' }}
+                                        </span>
+                                    </td>
                                     <td class="p-2 border-r border-black">
                                         <a href="{{ route('certificate.edit', $certificate->id) }}" class="btn btn-warning">
                                             <i class="fas fa-pencil"></i></a>

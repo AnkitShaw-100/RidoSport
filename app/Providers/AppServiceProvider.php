@@ -79,6 +79,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             // Fetch sub-services (services with a parent) and limit to 5 results
             $subservicesFooter = ServiceList::whereNotNull('parent_id') // Get sub-services (services with a parent)
+                                      ->with('parentService')
                                       ->limit(6) // Limit the results to 5
                                       ->get();
         
@@ -118,6 +119,7 @@ class AppServiceProvider extends ServiceProvider
             // Fetch products that don't have any sub-products (no children) or are sub-products themselves
             $products = ProductList::whereDoesntHave('subproducts') // Get products that don't have children
                                    ->orWhereNotNull('parent_id') // Also get sub-products (that have a parent)
+                                   ->with('parentProduct')
                                    ->limit(5)
                                    ->get();
         

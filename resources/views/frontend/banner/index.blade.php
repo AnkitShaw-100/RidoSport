@@ -12,15 +12,9 @@
                         <div class="content-box">
                             <!-- Dynamic tagline -->
                             <h1 data-animation-in="fadeInLeft" data-delay-in="0.2">
-                                {{ $banner->tagline }} 
-                                <span>
-                                    <img src="{{ asset('images/logo/logo-re.png') }}" alt="" style="width:300px; padding-left:50px">
-                                </span>
+                                {{ $banner->tagline }}
                             </h1>
                             <div data-animation-in="fadeInUp" data-delay-in="0.3" class="text"></div>
-                            <div class="btn-box">
-                                <!-- Add dynamic buttons or other content if needed -->
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -30,6 +24,4 @@
         @endif
     </div>
 </section>
-
-
 

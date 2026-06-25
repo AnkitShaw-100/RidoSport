@@ -75,6 +75,133 @@
         height: 150%; /* Ensure height is controlled too */
         object-fit: cover;
         }
+
+        .main-header .main-menu .navigation a,
+        .mobile-menu .navigation a,
+        .main-header .mobile-nav-toggler,
+        .mobile-menu .close-btn {
+            cursor: pointer;
+        }
+
+        .main-header .main-menu .navigation a,
+        .mobile-menu .navigation a,
+        .main-header .mobile-nav-toggler,
+        .mobile-menu .close-btn,
+        .main-header .main-menu .navigation a:focus,
+        .main-header .main-menu .navigation a:active,
+        .main-header .main-menu .navigation a:focus-visible,
+        .mobile-menu .navigation a:focus,
+        .mobile-menu .navigation a:active,
+        .mobile-menu .navigation a:focus-visible,
+        .main-header .mobile-nav-toggler:focus,
+        .main-header .mobile-nav-toggler:active,
+        .main-header .mobile-nav-toggler:focus-visible,
+        .mobile-menu .close-btn:focus,
+        .mobile-menu .close-btn:active,
+        .mobile-menu .close-btn:focus-visible {
+            border-color: transparent !important;
+            box-shadow: none !important;
+            outline: 0 !important;
+            text-decoration: none !important;
+        }
+
+        .main-header .main-menu .navigation > li > a {
+            position: relative;
+        }
+
+        .main-header .main-menu .navigation > li > a::after {
+            background: var(--theme-color1, #971736);
+            bottom: -7px;
+            content: "";
+            height: 2px;
+            left: 50%;
+            position: absolute;
+            transform: translateX(-50%) scaleX(0);
+            transform-origin: center center;
+            transition: transform 220ms ease;
+            width: 100%;
+        }
+
+        .main-header .main-menu .navigation > li > a:hover,
+        .main-header .main-menu .navigation > li > a:active,
+        .main-header .main-menu .navigation > li > a:focus-visible {
+            background: transparent !important;
+            color: var(--theme-color1, #971736) !important;
+        }
+
+        .main-header .main-menu .navigation > li > a:hover::after,
+        .main-header .main-menu .navigation > li > a:active::after,
+        .main-header .main-menu .navigation > li > a:focus-visible::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .main-header .main-menu .navigation ul a:focus,
+        .main-header .main-menu .navigation ul a:active,
+        .main-header .main-menu .navigation ul a:focus-visible,
+        .mobile-menu .navigation a:focus,
+        .mobile-menu .navigation a:active,
+        .mobile-menu .navigation a:focus-visible {
+            background: transparent !important;
+            color: var(--theme-color1, #971736) !important;
+        }
+
+        a,
+        button,
+        input[type="button"],
+        input[type="submit"],
+        input[type="reset"],
+        .btn,
+        [role="button"],
+        [tabindex] {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        a:focus,
+        a:active,
+        a:focus-visible,
+        button:focus,
+        button:active,
+        button:focus-visible,
+        input[type="button"]:focus,
+        input[type="button"]:active,
+        input[type="button"]:focus-visible,
+        input[type="submit"]:focus,
+        input[type="submit"]:active,
+        input[type="submit"]:focus-visible,
+        input[type="reset"]:focus,
+        input[type="reset"]:active,
+        input[type="reset"]:focus-visible,
+        .btn:focus,
+        .btn:active,
+        .btn:focus-visible,
+        [role="button"]:focus,
+        [role="button"]:active,
+        [role="button"]:focus-visible,
+        [tabindex]:focus,
+        [tabindex]:active,
+        [tabindex]:focus-visible {
+            outline: 0 !important;
+            text-decoration: none !important;
+        }
+
+        button:focus,
+        button:active,
+        input[type="button"]:focus,
+        input[type="button"]:active,
+        input[type="submit"]:focus,
+        input[type="submit"]:active,
+        input[type="reset"]:focus,
+        input[type="reset"]:active,
+        .btn:focus,
+        .btn:active,
+        .btn:focus-visible {
+            box-shadow: none !important;
+        }
+
+        button::-moz-focus-inner,
+        input::-moz-focus-inner {
+            border: 0 !important;
+        }
     </style>
     @stack('style')
     @stack('gtag')
@@ -110,12 +237,12 @@
                                     <a href="{{route('home')}}">Home</a>
                                 </li>
                                 <li class="current"><a href="{{route('about-us')}}">About</a></li>
-                                <li class="dropdown"><a href="#" class="dropdown">Products</a>
+                                <li class="dropdown"><a href="{{ route('products.index') }}" class="dropdown">Products</a>
                                     <ul>
                                         @foreach($products as $product)
                                             @if($product->subproducts->count() > 0)
                                                 <li class="dropdown">
-                                                    <a href="#">{{ $product->name }}</a>
+                                                    <a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a>
                                                     <ul>
                                                         @foreach($product->subproducts as $subproduct)
                                                             <li>
@@ -133,7 +260,7 @@
                                             @endif
                                         @endforeach
                                         <li class="dropdown">
-                                            <a href="#">Sports Equipments</a>
+                                            <a href="{{ route('products.index') }}">Sports Equipments</a>
                                             <ul>
                                                 @foreach($sports_equipment_list as $equipment)
                                                     <li>
@@ -148,12 +275,12 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown">Services</a>
+                                    <a href="{{ route('services.index') }}" class="dropdown">Services</a>
                                     <ul>
                                         @foreach($services as $service)
                                             @if($service->subservices->count() > 0)
                                                 <li class="dropdown">
-                                                    <a href="#">{{ $service->name }}</a>
+                                                    <a href="{{ route('service-category.show', $service->slug) }}">{{ $service->name }}</a>
                                                     <ul>
                                                         @foreach($service->subservices as $subservice)
                                                             <li>
@@ -174,7 +301,7 @@
                                 </li>
                                 
                                 <li class="dropdown">
-                                    <a href="#">Design Court</a>
+                                    <a href="{{ route('design-court') }}">Design Court</a>
                                     <ul>
                                         <li><a href="{{ route('basketball-court') }}">Basketball Court</a></li>
                                         <li><a href="{{ route('handball-court') }}">Handball Court</a></li>

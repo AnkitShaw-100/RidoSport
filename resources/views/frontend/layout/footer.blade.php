@@ -48,10 +48,21 @@
                                 <h6 class="title" style="text-decoration: none; color: var(--theme-color4) !important;">09 AM - 06 PM, Sun - Thu</h6>
                             </div> -->
                             <ul class="social-icons">
-                                <li><a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a></li>
-                                <li><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                <li><a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                                <li><a href="#" aria-label="Behance"><i class="fa-brands fa-behance"></i></a></li>
+                                <li>
+                                    <a href="https://www.instagram.com/ridosports?igsh=cjA5bnJ0N3lkMml3" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                        <i class="fa-brands fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.facebook.com/share/1EQFeX8dNM/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                        <i class="fa-brands fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.linkedin.com/in/rido-sports-3b16291b1" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                        <i class="fa-brands fa-linkedin-in"></i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -66,12 +77,16 @@
                             <ul class="user-links style-two" style="padding-left: 0">
                                 <ul class="user-links style-two" style="padding-left: 0">
                                     @foreach($products as $product)
-                                        <li><a href="{{ $product->url }}">{{ $product->name }}</a></li>
+                                        <li>
+                                            <a href="{{ $product->parent_id && $product->parentProduct ? route('subproduct.show', [$product->parentProduct->slug, $product->slug]) : route('product.show', $product->slug) }}">
+                                                {{ $product->name }}
+                                            </a>
+                                        </li>
                                     @endforeach
                                 </ul>
                                 
                                 
-                                <li><a href="#">Sports Equipments</a></li>
+                                <li><a href="{{ route('products.index') }}">Sports Equipments</a></li>
                             </ul>
                         </div>
                     </div>
@@ -84,7 +99,11 @@
                         <div class="widget-content">
                             <ul class="user-links style-two" style="padding-left: 0">
                                 @foreach($subservicesFooter as $subservice)
-                                    <li><a href="{{$subservice->url}}">{{ $subservice->name }}</a></li>
+                                    <li>
+                                        <a href="{{ $subservice->parentService ? route('subservice.show', [$subservice->parentService->slug, $subservice->slug]) : route('service.show', $subservice->slug) }}">
+                                            {{ $subservice->name }}
+                                        </a>
+                                    </li>
                                 @endforeach
                             </ul>
                             

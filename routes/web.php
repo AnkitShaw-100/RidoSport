@@ -39,6 +39,7 @@ Route::group([], function () {
         Route::get('/about-us', [FrontEndController::class, 'aboutUs'])->name('about-us');
         Route::get('/contact-us', [FrontEndController::class, 'contactUs'])->name('contact-us');
         Route::post('/contact-us', [ContactUsFormController::class, 'store'])->name('contact-store');
+        Route::get('/certificates/{certificate}/download', [CertificateController::class, 'download'])->name('certificate.download');
 
         // Gallery Page Routes
         Route::prefix('gallery')->group(function () {
@@ -57,6 +58,9 @@ Route::group([], function () {
 
         
     Route::get('sports-equipment/{slug}', [SportsEquipmentController::class, 'show'])->name('equipment.show');
+
+    Route::get('services', [ServiceListController::class, 'catalog'])->name('services.index');
+    Route::get('service-category/{slug}', [ServiceListController::class, 'categoryRange'])->name('service-category.show');
 
     Route::prefix('services')->group(function () {
         // Route for the main service
@@ -93,12 +97,16 @@ Route::group([], function () {
     }); 
 
     // Products Routes
-    Route::prefix('products')->group(function () {
+    Route::get('products', [ProductListController::class, 'catalog'])->name('products.index');
+    Route::get('product-category/sports-equipments', [ProductListController::class, 'equipmentRange'])->name('product-category.equipment');
+    Route::get('product-category/{slug}', [ProductListController::class, 'categoryRange'])->name('product-category.show');
 
-        // Route for the main PRODUCT
+    Route::prefix('product')->group(function () {
+
+        // Route for the main PRODUCT detail page
         Route::get('/{slug}', [ProductListController::class, 'show'])->name('product.show');
     
-        // Route for sub-PRODUCTs under a parent PRODUCT
+        // Route for sub-PRODUCT detail pages under a parent PRODUCT
         Route::get('/{parentSlug}/{subSlug}', [ProductListController::class, 'showSubProduct'])->name('subproduct.show');
     });
 

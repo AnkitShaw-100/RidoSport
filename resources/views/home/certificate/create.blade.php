@@ -31,6 +31,14 @@
                                 <x-input-error class="mt-2" :messages="$errors->get('certified_by_logo')" />
                             </div>
 
+                            <!-- Certificate PDF Upload -->
+                            <div>
+                                <x-input-label for="certificate_pdf" :value="__('Certificate PDF')" />
+                                <input type="file" name="certificate_pdf" id="certificate_pdf" accept="application/pdf" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 sm:text-sm" />
+                                <p class="mt-2 text-xs text-gray-600 dark:text-gray-400">Optional PDF up to 10MB. This will be used for the frontend download button.</p>
+                                <x-input-error class="mt-2" :messages="$errors->get('certificate_pdf')" />
+                            </div>
+
                             <!-- Certified By Company Name -->
                             <div>
                                 <x-input-label for="certified_by_company_name" :value="__('Certified By Company Name')" />

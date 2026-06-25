@@ -50,9 +50,9 @@
     .testimonial-area {
         margin: 0;
         padding: 120px 0;
-        background: url('images/bg/sky-bg.png') no-repeat center center;
-        background-size: cover;
-        background-color: whitesmoke;
+        background: url('images/bg/sky-bg.png') no-repeat center center !important;
+        background-size: cover !important;
+        background-color: whitesmoke !important;
     }
 
     /* Main container setup */
@@ -66,7 +66,7 @@
 
     /* Card setup */
     .card {
-        width: 350px;
+        width: min(350px, calc(100% - 20px));
         height: 500px;
         position: relative;
         transform-style: preserve-3d;
@@ -74,7 +74,7 @@
         border: none;
         transition: transform 0.5s;
         background-color: transparent;
-        margin: 20px;
+        margin: 20px auto;
     }
 
     .card:hover {
@@ -85,8 +85,10 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        box-shadow: none;
+        border: 1px solid rgba(151, 23, 54, .28);
         border-radius: 15px;
+        box-sizing: border-box;
         backface-visibility: hidden;
         transition: transform 0.5s;
         overflow: hidden;
@@ -198,6 +200,89 @@
             font-size: 16px;
         }
     }
+
+    .testimonial-area .testi_list {
+        padding: 0;
+        position: relative;
+    }
+
+    .testimonial-area .testi_list .owl-stage {
+        align-items: stretch;
+        display: flex;
+    }
+
+    .testimonial-area .testi_list .owl-item {
+        display: flex;
+        justify-content: center;
+    }
+
+    .testimonial-area .testi_list .col-lg-12 {
+        display: flex;
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+    }
+
+    .testimonial-area .testi_list .owl-nav {
+        display: block !important;
+        margin: 0;
+    }
+
+    .testimonial-area .testi_list .owl-prev,
+    .testimonial-area .testi_list .owl-next {
+        align-items: center;
+        background: #fff !important;
+        border: 1px solid rgba(151, 23, 54, .34) !important;
+        border-radius: 50% !important;
+        box-shadow: none;
+        color: var(--theme-color1) !important;
+        display: flex !important;
+        font-size: 24px;
+        font-weight: 700;
+        height: 44px;
+        justify-content: center;
+        line-height: 1;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: background .25s ease, color .25s ease;
+        width: 44px;
+        z-index: 5;
+    }
+
+    .testimonial-area .testi_list .owl-prev {
+        left: -56px;
+    }
+
+    .testimonial-area .testi_list .owl-next {
+        right: -56px;
+    }
+
+    .testimonial-area .testi_list .owl-prev:hover,
+    .testimonial-area .testi_list .owl-next:hover {
+        background: var(--theme-color1) !important;
+        color: #fff !important;
+    }
+
+    .testimonial-area .testi_list .owl-prev span,
+    .testimonial-area .testi_list .owl-next span {
+        display: block;
+        line-height: 1;
+        margin-top: -2px;
+    }
+
+    @media (max-width: 767px) {
+        .testimonial-area .testi_list {
+            padding: 0 40px;
+        }
+
+        .testimonial-area .testi_list .owl-prev,
+        .testimonial-area .testi_list .owl-next {
+            height: 38px;
+            width: 38px;
+        }
+    }
 </style>
 
 <div class="testimonial-area">
@@ -206,8 +291,16 @@
             <h1 class="section-main-title"><span>TESTIMONIALS</span></h1>
         </div>
         <div class="row">
+            @php
+                $testimonialSource = collect($testimonials);
+                $testimonialItems = $testimonialSource;
+
+                while ($testimonialSource->isNotEmpty() && $testimonialItems->count() < 6) {
+                    $testimonialItems = $testimonialItems->concat($testimonialSource);
+                }
+            @endphp
             <div class="testi_list owl-carousel">
-                @foreach ($testimonials as $testimonial)
+                @foreach ($testimonialItems as $testimonial)
                 <div class="col-lg-12 col-md-12">
                     <div class="card">
                         <!-- Front face -->
@@ -235,3 +328,49 @@
         </div>
     </div>
 </div>
+
+@push('script')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!window.jQuery || !jQuery.fn.owlCarousel) {
+                return;
+            }
+
+            var $carousel = jQuery('.testimonial-area .testi_list');
+
+            if (!$carousel.length) {
+                return;
+            }
+
+            if ($carousel.data('owl.carousel')) {
+                $carousel.trigger('destroy.owl.carousel');
+                $carousel.removeClass('owl-loaded owl-drag');
+                $carousel.find('.owl-stage-outer').children().unwrap();
+            }
+
+            $carousel.owlCarousel({
+                autoplay: true,
+                autoplayHoverPause: false,
+                autoplayTimeout: 2200,
+                dots: false,
+                loop: true,
+                margin: 30,
+                nav: true,
+                navText: ["<span>&lsaquo;</span>", "<span>&rsaquo;</span>"],
+                slideBy: 1,
+                smartSpeed: 900,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    768: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
+                    }
+                }
+            });
+        });
+    </script>
+@endpush

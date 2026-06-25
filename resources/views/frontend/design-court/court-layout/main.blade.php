@@ -43,7 +43,7 @@
 <div class="row">    
     <div class="col-6">
         <div class="row">
-            <u><h4>Surface Colors:-- </h4></u>
+            <h4>Surface Colors</h4>
         </div>
         <div class="row">
             <!-- PU Surface Colors -->
@@ -199,7 +199,7 @@
     </div>
     <div class="col-6">
         <div class="row">
-            <u><h4>Border Colors:-- </h4></u>
+            <h4>Border Colors</h4>
         </div>   
         <div class="row">
              <!-- PU Border Colors -->

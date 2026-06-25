@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\ProductList;
+use App\Models\SportsEquipment;
 // use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -17,6 +18,74 @@ class ProductListController extends Controller
     {
         $products = ProductList::whereNull('parent_id')->with('subproducts')->get();
         return view('products.product_list.index', compact('products'));
+    }
+
+    /**
+     * Display the public product catalog with every dropdown category in one place.
+     */
+    public function catalog()
+    {
+        $productGroups = ProductList::whereNull('parent_id')
+            ->with(['subProducts.products', 'products'])
+            ->orderBy('name')
+            ->get();
+
+        $sportsEquipmentGroups = SportsEquipment::with('equipment')
+            ->orderBy('name')
+            ->get();
+
+        return view('frontend.products.catalog', compact('productGroups', 'sportsEquipmentGroups'));
+    }
+
+    public function categoryRange($slug)
+    {
+        $productGroup = ProductList::where('slug', $slug)
+            ->whereNull('parent_id')
+            ->with(['subProducts.products', 'products'])
+            ->firstOrFail();
+
+        $catalogItems = collect();
+
+        if ($productGroup->products->isNotEmpty() || $productGroup->subProducts->isEmpty()) {
+            $catalogItems->push($productGroup);
+        }
+
+        foreach ($productGroup->subProducts as $subProduct) {
+            $catalogItems->push($subProduct);
+        }
+
+        if ($catalogItems->count() === 1) {
+            $item = $catalogItems->first();
+
+            return redirect($item->parent_id
+                ? route('subproduct.show', [$productGroup->slug, $item->slug])
+                : route('product.show', $item->slug));
+        }
+
+        return view('frontend.products.category_range', [
+            'pageTitle' => $productGroup->name,
+            'parentGroup' => $productGroup,
+            'catalogItems' => $catalogItems,
+            'rangeType' => 'product',
+        ]);
+    }
+
+    public function equipmentRange()
+    {
+        $catalogItems = SportsEquipment::with('equipment')
+            ->orderBy('name')
+            ->get();
+
+        if ($catalogItems->count() === 1) {
+            return redirect(route('equipment.show', ['slug' => $catalogItems->first()->slug]));
+        }
+
+        return view('frontend.products.category_range', [
+            'pageTitle' => 'Sports Equipments',
+            'parentGroup' => null,
+            'catalogItems' => $catalogItems,
+            'rangeType' => 'equipment',
+        ]);
     }
 
     /**
@@ -58,7 +127,7 @@ class ProductListController extends Controller
                     ProductList::create([
                         'name' => $sublist['name'],
                         'slug' => $sublist['slug'] ?? Str::slug($sublist['name']),
-                        'url' => $sublist['url'] ?? route('product.show', $mainProduct->slug . '/' . Str::slug($sublist['name'])),
+                        'url' => $sublist['url'] ?? route('subproduct.show', [$mainProduct->slug, Str::slug($sublist['name'])]),
                         'parent_id' => $mainProduct->id, // Set the parent to the main product
                     ]);
                 }
@@ -207,7 +276,7 @@ class ProductListController extends Controller
                 }
     
                 $slug = $sublist['slug'] ?? Str::slug($sublist['name']); // Generate slug if not provided
-                $url = $sublist['url'] ?? route('product.show', [$product->slug.'/'. $slug]); // Create nested URL
+                $url = $sublist['url'] ?? route('subproduct.show', [$product->slug, $slug]); // Create nested URL
     
                 // Use updateOrCreate with the correct parent_id
                 ProductList::updateOrCreate(

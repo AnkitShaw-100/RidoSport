@@ -12,6 +12,7 @@ class Certificate extends Model
     // Define the fillable fields
     protected $fillable = [
         'certified_by_logo',
+        'certificate_pdf',
         'certified_by_company_name',
         'certified_for',
         'product_name',

@@ -9,6 +9,48 @@ use Illuminate\Support\Str;
 
 class ServiceListController extends Controller
 {
+    public function catalog()
+    {
+        $serviceGroups = ServiceList::whereNull('parent_id')
+            ->with(['subServices.projects', 'projects'])
+            ->orderBy('name')
+            ->get();
+
+        return view('frontend.services.catalog', compact('serviceGroups'));
+    }
+
+    public function categoryRange($slug)
+    {
+        $serviceGroup = ServiceList::where('slug', $slug)
+            ->whereNull('parent_id')
+            ->with(['subServices.projects', 'projects'])
+            ->firstOrFail();
+
+        $catalogItems = collect();
+
+        if ($serviceGroup->projects->isNotEmpty() || $serviceGroup->subServices->isEmpty()) {
+            $catalogItems->push($serviceGroup);
+        }
+
+        foreach ($serviceGroup->subServices as $subService) {
+            $catalogItems->push($subService);
+        }
+
+        if ($catalogItems->count() === 1) {
+            $item = $catalogItems->first();
+
+            return redirect($item->parent_id
+                ? route('subservice.show', [$serviceGroup->slug, $item->slug])
+                : route('service.show', $item->slug));
+        }
+
+        return view('frontend.services.category_range', [
+            'pageTitle' => $serviceGroup->name,
+            'parentGroup' => $serviceGroup,
+            'catalogItems' => $catalogItems,
+        ]);
+    }
+
     /**
      * Display a list of all services and their sublists.
      */
@@ -57,7 +99,7 @@ class ServiceListController extends Controller
                 $subService->slug = $sublist['slug'] ?? Str::slug($subService->name); // Use sublist name if slug is missing
                 
                 // Construct the URL using the main service slug
-                $subService->url = $sublist['url'] ?? route('service.show', $mainService->slug . '/' . $subService->slug);
+                $subService->url = $sublist['url'] ?? route('subservice.show', [$mainService->slug, $subService->slug]);
                 $subService->parent_id = $mainService->id; // Set the parent to the main service
                 
                 // Save the sublist service if it has a name
@@ -74,7 +116,13 @@ class ServiceListController extends Controller
     public function show($slug)
     {
         // Fetch the main service by slug
-        $service = ServiceList::where('slug', $slug)->firstOrFail();
+        $service = ServiceList::where('slug', $slug)
+            ->with('subServices')
+            ->firstOrFail();
+
+        if ($service->subServices->isNotEmpty()) {
+            return redirect()->route('service-category.show', $service->slug);
+        }
         
         // Set the page title and route
         $pageTitle = $service->name;
@@ -161,7 +209,7 @@ class ServiceListController extends Controller
                 $slug = $sublist['slug'] ?? Str::slug($sublist['name']); // Generate slug if not provided
     
                 // Create nested URL for sublist items
-                $url = route('service.show', [$service->slug . '/' . $slug]); // Create nested URL
+                $url = route('subservice.show', [$service->slug, $slug]); // Create nested URL
     
                 // Use updateOrCreate with the correct parent_id
                 ServiceList::updateOrCreate(

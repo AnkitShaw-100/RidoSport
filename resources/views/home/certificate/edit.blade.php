@@ -47,12 +47,29 @@
                                 <img src="{{ url($certificate->certified_by_logo) }}" alt="Certified By Logo" style="width:150px; height:auto;">
                             </div>
 
+                            @if ($certificate->certificate_pdf)
+                                <div class="mt-4">
+                                    <x-input-label :value="__('Current Certificate PDF')" />
+                                    <a href="{{ url($certificate->certificate_pdf) }}" target="_blank" class="inline-block text-sm font-semibold text-indigo-700 underline">
+                                        View current PDF
+                                    </a>
+                                </div>
+                            @endif
+
                             <!-- Certified By Logo (Image Upload) -->
                             <div class="mt-4">
                                 <x-input-label for="certified_by_logo" :value="__('Change Certified By Logo (Optional)')" />
                                 <input type="file" name="certified_by_logo" id="certified_by_logo" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 sm:text-sm" />
                                 <p class="mt-2 text-xs text-gray-600 dark:text-gray-400">PNG, WEBP up to 2MB</p>
                                 <x-input-error class="mt-2" :messages="$errors->get('certified_by_logo')" />
+                            </div>
+
+                            <!-- Certificate PDF Upload -->
+                            <div class="mt-4">
+                                <x-input-label for="certificate_pdf" :value="__('Change Certificate PDF (Optional)')" />
+                                <input type="file" name="certificate_pdf" id="certificate_pdf" accept="application/pdf" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 sm:text-sm" />
+                                <p class="mt-2 text-xs text-gray-600 dark:text-gray-400">PDF up to 10MB. Uploading a new file replaces the current download PDF.</p>
+                                <x-input-error class="mt-2" :messages="$errors->get('certificate_pdf')" />
                             </div>
 
                             <!-- Form Actions -->

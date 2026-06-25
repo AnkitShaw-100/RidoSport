@@ -110,7 +110,7 @@ class FrontEndController extends Controller
     // Method for Futsal court
     public function futsal_court()
     {
-        return view('frontend.design-court.error'); // Adjust the view path as needed
+        return view('frontend.design-court.futsal'); // Adjust the view path as needed
     }
 
     // Method for Handball court

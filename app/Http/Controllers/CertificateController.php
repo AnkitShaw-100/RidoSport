@@ -7,6 +7,24 @@ use Illuminate\Http\Request;
 
 class CertificateController extends Controller
 {
+    public function download(Certificate $certificate)
+    {
+        if ($certificate->certificate_pdf) {
+            $pdfPath = public_path($certificate->certificate_pdf);
+
+            if (file_exists($pdfPath)) {
+                return response()->download($pdfPath, $this->certificateFilename($certificate), [
+                    'Content-Type' => 'application/pdf',
+                ]);
+            }
+        }
+
+        return response($this->buildCertificatePdf($certificate), 200, [
+            'Content-Disposition' => 'attachment; filename="' . $this->certificateFilename($certificate) . '"',
+            'Content-Type' => 'application/pdf',
+        ]);
+    }
+
     // Display a listing of certificates
     public function index()
     {
@@ -27,6 +45,7 @@ class CertificateController extends Controller
         $request->validate([
             'certified_by_company_name' => 'required|string|max:255',
             'certified_by_logo' => 'required|image|mimes:png,webp|max:2048', // Image validation
+            'certificate_pdf' => 'nullable|file|mimes:pdf|max:10240',
             'certified_for' => 'required|string|max:255',
             'product_name' => 'required|string|max:255',
         ]);
@@ -48,11 +67,21 @@ class CertificateController extends Controller
     
             // Move the uploaded file to the public/certificates directory
             $logo->move($path, $filename);
+
+            $pdfPath = null;
+
+            if ($request->hasFile('certificate_pdf')) {
+                $pdf = $request->file('certificate_pdf');
+                $pdfFilename = time() . '-certificate.' . $pdf->getClientOriginalExtension();
+                $pdf->move($path, $pdfFilename);
+                $pdfPath = 'certificates/' . $pdfFilename;
+            }
     
             // Save the file path and other form data in the database
             Certificate::create([
                 'certified_by_company_name' => $request->input('certified_by_company_name'),
                 'certified_by_logo' => 'certificates/' . $filename,  // Save relative path to the logo
+                'certificate_pdf' => $pdfPath,
                 'certified_for' => $request->input('certified_for'),
                 'product_name' => $request->input('product_name'),
             ]);
@@ -85,6 +114,7 @@ class CertificateController extends Controller
             'certified_for' => 'required|string|max:255',
             'product_name' => 'required|string|max:255',
             'certified_by_logo' => 'nullable|mimes:png,webp|max:2048', // Logo image is optional
+            'certificate_pdf' => 'nullable|file|mimes:pdf|max:10240',
         ]);
 
         // Update the certificate's basic fields
@@ -111,6 +141,20 @@ class CertificateController extends Controller
             $certificate->certified_by_logo = 'certificates/' . $filename;
         }
 
+        if ($request->hasFile('certificate_pdf')) {
+            $oldPdfPath = public_path($certificate->certificate_pdf);
+
+            if ($certificate->certificate_pdf && file_exists($oldPdfPath)) {
+                unlink($oldPdfPath);
+            }
+
+            $pdf = $request->file('certificate_pdf');
+            $pdfFilename = time() . '-certificate.' . $pdf->getClientOriginalExtension();
+            $pdf->move(public_path('certificates'), $pdfFilename);
+
+            $certificate->certificate_pdf = 'certificates/' . $pdfFilename;
+        }
+
         // Save the updated certificate data
         $certificate->save();
 
@@ -129,6 +173,12 @@ class CertificateController extends Controller
     
             if (file_exists($path)) {
                 if (unlink($path)) {
+                    $pdfPath = public_path($certificate->certificate_pdf);
+
+                    if ($certificate->certificate_pdf && file_exists($pdfPath)) {
+                        unlink($pdfPath);
+                    }
+
                     // File successfully deleted
                     $certificate->delete();
                     return redirect()->route('certificate.index')->with('success', 'Certificate deleted successfully.');
@@ -141,5 +191,65 @@ class CertificateController extends Controller
         }
     
         return redirect()->route('certificate.index')->with('failure', 'Certificate not found.');
+    }
+
+    private function certificateFilename(Certificate $certificate): string
+    {
+        $name = preg_replace('/[^A-Za-z0-9]+/', '-', $certificate->certified_by_company_name . '-' . $certificate->product_name);
+        $name = trim(strtolower($name), '-');
+
+        return ($name ?: 'certificate') . '.pdf';
+    }
+
+    private function buildCertificatePdf(Certificate $certificate): string
+    {
+        $lines = [
+            ['Rido Sports', 26, 72, 760],
+            ['Certification Badge', 18, 72, 720],
+            ['Certified By: ' . $certificate->certified_by_company_name, 14, 72, 660],
+            ['Awarded For: ' . $certificate->certified_for, 14, 72, 630],
+            ['Product: ' . $certificate->product_name, 14, 72, 600],
+            ['This PDF was generated from the accreditation record displayed on the Rido Sports website.', 11, 72, 540],
+        ];
+
+        $content = '';
+
+        foreach ($lines as [$text, $size, $x, $y]) {
+            $content .= "BT /F1 {$size} Tf {$x} {$y} Td (" . $this->escapePdfText($text) . ") Tj ET\n";
+        }
+
+        $objects = [
+            "1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n",
+            "2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj\n",
+            "3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>\nendobj\n",
+            "4 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>\nendobj\n",
+            "5 0 obj\n<< /Length " . strlen($content) . " >>\nstream\n{$content}endstream\nendobj\n",
+        ];
+
+        $pdf = "%PDF-1.4\n";
+        $offsets = [0];
+
+        foreach ($objects as $object) {
+            $offsets[] = strlen($pdf);
+            $pdf .= $object;
+        }
+
+        $xrefOffset = strlen($pdf);
+        $pdf .= "xref\n0 " . (count($objects) + 1) . "\n";
+        $pdf .= "0000000000 65535 f \n";
+
+        for ($i = 1; $i <= count($objects); $i++) {
+            $pdf .= sprintf("%010d 00000 n \n", $offsets[$i]);
+        }
+
+        $pdf .= "trailer\n<< /Size " . (count($objects) + 1) . " /Root 1 0 R >>\n";
+        $pdf .= "startxref\n{$xrefOffset}\n%%EOF";
+
+        return $pdf;
+    }
+
+    private function escapePdfText(string $text): string
+    {
+        return str_replace(['\\', '(', ')'], ['\\\\', '\(', '\)'], $text);
     }
 }
